@@ -1,0 +1,41 @@
+@import 'variables';
+
+.btn{
+  display: inline-block;
+  padding: 10px;
+  font-family: $fontPrimary;
+  font-size: 16px;
+  font-weight: 800;
+  border-radius: 5px;
+  border: 1px transparent;
+  color: #fff;
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+
+  &.down{
+    transform: scale(0.96);
+  }
+  
+  &.btn-primary{
+    background-color: $colorPrimary;
+    &:hover{
+      background-color: $colorPrimaryLight;
+    }
+  }
+  
+  &.btn-primary-light{
+    background-color: $colorPrimaryLight;
+    &:hover{
+      background-color: #6c87f9;
+    }
+  }
+  
+  &.btn-secondary{
+    background-color: $colorSecondary;
+    &:hover{
+      background-color: #00d4b7;
+    }
+  }
+}
+
