@@ -1,0 +1,29 @@
+.page-title-wrapper{
+  overflow: hidden;
+  height: 47px;
+  margin: 30px 10px;
+  text-align: center;
+}
+.page-title{
+  position: relative;
+  display: inline-block;
+  margin-top: 47px;
+  padding: 10px;
+  font-size: 2em;
+  font-weight: 800;
+  color: #4460D1;
+  &:after{
+    content: '';
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    border-bottom: 3px solid #00BFA5;
+    transform: scale(0);
+    transition: ease transform .3s;
+  }
+  &.visible{
+    &:after{
+      transform: scale(1);
+    }
+  }
+}

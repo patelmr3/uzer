@@ -4,11 +4,12 @@
 
 html{
   padding: 10%;
+  font-family: $fontPrimary;
+  font-size: 12px;
   background-color: #ECECEC;
 }
 
 body{
-  font-family: $fontPrimary;
   background-color: #fff;
   box-shadow: 0px 2px 20px rgba(0,0,0,0.3);
 }

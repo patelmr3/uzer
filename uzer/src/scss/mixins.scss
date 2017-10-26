@@ -1,12 +1,25 @@
 @import 'variables';
 
+.cf{
+  &:before{
+    clear: both;
+  }
+  
+  &:after{
+    display: table;
+    contain: '';
+    clear: both;
+  }
+}
+
+
 .btn{
   display: inline-block;
-  padding: 10px;
+  padding: .6em .9em;
   font-family: $fontPrimary;
-  font-size: 16px;
+  font-size: 1.2em;
   font-weight: 800;
-  border-radius: 5px;
+  border-radius: .3em;
   border: 1px transparent;
   color: #fff;
   background-color: transparent;
