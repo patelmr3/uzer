@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, Input } from '@angular/core';
 import { trigger, state, style, transition, animate, group, animateChild } from '@angular/animations';
 
 @Component({
@@ -7,7 +6,7 @@ import { trigger, state, style, transition, animate, group, animateChild } from 
   template: `
     <div class="page-title-wrapper cf">
       <h1  
-      [@pageTitleState]="pts" 
+      [@pageTitleState]="pageTitleState" 
       (@pageTitleState.done)="showBorder = true" 
       class="page-title"
       [class.visible]="showBorder">
@@ -26,21 +25,15 @@ import { trigger, state, style, transition, animate, group, animateChild } from 
   ]
 })
 export class PageTitleComponent {
-
-  pageTitle: String;
-  pts: String;
+  pageTitleState: String;
   showBorder: Boolean = false;
+  
+  @Input() pageTitle: String;
 
-  constructor(private activatedRoute: ActivatedRoute) { }
+  constructor() { }
 
   ngOnInit() {
-    this.activatedRoute.data.subscribe( (data) => { 
-      this.pageTitle = data.pageTitle; 
-    });
-  }
-
-  ngAfterViewInit() {
-    this.pts = 'in';
+    this.pageTitleState = 'in';
   }
 
 }

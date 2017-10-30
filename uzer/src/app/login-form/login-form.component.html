@@ -1,0 +1,23 @@
+<page-title pageTitle="Login"></page-title>
+
+<form [formGroup]="loginForm" (submit)="doLogin()" novalidate>
+  <div class="form-control-group">
+    <label for="first-name">First name</label>
+    <input 
+    id="first-name" 
+    type="text" 
+    class="form-control primary" 
+    formControlName="firstName" 
+    placeholder="John">
+  </div>
+  <div class="form-control-group">
+    <label for="email">Email</label>
+    <input 
+    id="email" 
+    type="email" 
+    class="form-control primary" 
+    formControlName="email" 
+    placeholder="john@email.com">
+  </div>
+  <button pushDownBtn id="log-in-btn" class="btn btn-primary-lighter-border btn-wide">Log in</button>
+</form>

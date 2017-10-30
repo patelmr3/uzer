@@ -1,0 +1,22 @@
+<section class="user-wrapper">
+
+  <page-title pageTitle="Users"></page-title>
+  
+  <section class="user-list">
+    <article
+    [routerLink]="['/users', user.userId]"
+    pushDownBtn
+    *ngFor="let user of users"
+    class="user" [@slideIn]="slideInUserInitials">
+      <div class="user-name">
+        <div class="user-initials" [@slideIn]="slideInUserInitials">{{ user | initials }}</div>
+        <div class="user-full-name" [@slideIn]="slideInUserInitials">{{ user.firstName + ' ' + user.lastName }}</div>
+      </div>
+      <div class="user-job-title">{{ user.jobPosition }}</div>
+    </article>
+    <article *ngIf="!users">No users found</article>
+  </section>
+
+  <router-outlet></router-outlet>
+
+</section>

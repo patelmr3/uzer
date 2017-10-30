@@ -1,0 +1,73 @@
+@import '~scss/variables';
+
+.user-list{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.user{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 48%;
+  margin: 1%;
+  padding: 1.1em;
+  border: 1px solid $colorPrimaryLighter;
+  border-radius: .3em;
+  &:hover{
+    border-color: $colorSecondary;
+    background-color: $colorPrimaryLighter;
+    cursor: pointer;
+  }
+}
+
+.user-name{
+  display: flex;
+  flex-direction: row;
+
+  .user-initials{
+    width: 3em;
+    height: 3em;
+    padding-top: 1em;
+    font-size: 1.2em;
+    font-weight: 800;
+    text-align: center;
+    border-radius: .2em;
+    color: #fff;
+    background-color: $colorSecondary;
+  }
+
+  .user-full-name{
+    margin-left: 1em;
+    align-self: center;
+    font-size: 1.3em;
+    font-weight: 800;
+  }
+}
+
+.user-job-title{
+  margin-top: 1.5em;
+  padding-top: .5em;
+  font-family: $fontSecondary;
+  color: $colorTextLight;
+  vertical-align: middle;
+  &:before{
+    display: inline-block;
+    content: ' ';
+    margin-right: 5px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: $colorSecondary;
+  }
+}
+
+@media all and (max-width: 768px) {
+  .user-list{
+    flex-direction: column;
+  }
+
+  .user{
+    width: 100%;
+  }
+}

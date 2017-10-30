@@ -1,5 +1,11 @@
 @import 'variables';
 
+.container{
+  max-width: 600px;
+  margin: 0px auto;
+  padding: 20px 20px 100px;
+}
+
 .cf{
   &:before{
     clear: both;
@@ -12,23 +18,19 @@
   }
 }
 
-
 .btn{
   display: inline-block;
-  padding: .6em .9em;
+  padding: .7em .9em;
   font-family: $fontPrimary;
   font-size: 1.2em;
   font-weight: 800;
   border-radius: .3em;
-  border: 1px transparent;
+  border: 2px solid;
+  border-color: transparent;
   color: #fff;
   background-color: transparent;
   cursor: pointer;
   outline: none;
-
-  &.down{
-    transform: scale(0.96);
-  }
   
   &.btn-primary{
     background-color: $colorPrimary;
@@ -43,6 +45,16 @@
       background-color: #6c87f9;
     }
   }
+
+  &.btn-primary-lighter-border{
+    color: $colorPrimary;
+    background-color: $colorPrimaryLighter;
+    border-color: $colorPrimary;
+    &:hover{
+      color: #fff;
+      background-color: #6c87f9;
+    }
+  }
   
   &.btn-secondary{
     background-color: $colorSecondary;
@@ -50,5 +62,71 @@
       background-color: #00d4b7;
     }
   }
+
+  &.btn-wide{
+    width: 100%;
+    padding: 1.2em; 
+  }
+
+  &:disabled{
+    border: 0px;
+    color: #fff;
+    background-color: $colorPrimaryLighter;
+    &:hover{
+      background-color: $colorPrimaryLighter;
+      cursor: default;
+    }
+  }
+}
+
+.down{
+  transform: scale(0.96) !important;
+}
+
+label{
+  display: block;
+  font-size: 1.3em;
+  font-weight: 600;
+}
+
+.form-control-group{
+  margin-bottom: 25px;
+}
+
+.form-control{
+  display: block;
+  width: 100%;
+  padding: 15px 0px;
+  font-size: 1.6em;
+  border: 0px;
+  border-bottom: 2px solid;
+  border-color: #eee;
+  
+  &::placeholder{
+    opacity: .5;
+  }
+  
+  &.primary{
+    border-color: $colorPrimaryLighter;
+  }
+
+  &:focus{
+    outline: none;
+    border-color: $colorPrimary;    
+  }
+
+  &.ng-valid.ng-dirty{
+    border-color: $colorSecondary;
+  }
+
+  &.ng-invalid.ng-touched{
+    border-color: rgb(206, 48, 48);
+  }
+}
+
+.error-message {
+  margin-top: 5px;
+  font-family: $fontSecondary;
+  color: #f77;
 }
 

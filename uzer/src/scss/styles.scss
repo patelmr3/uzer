@@ -3,13 +3,18 @@
 @import 'mixins';
 
 html{
-  padding: 10%;
+  padding: 5%;
   font-family: $fontPrimary;
   font-size: 12px;
-  background-color: #ECECEC;
+  background-color: #ECEFF1;
+  background-image: url('../assets/pattern_light.svg');
+  background-size: 100px;
 }
 
 body{
+  max-width: 768px;
+  margin: auto;
+  color: $colorTextDark;
   background-color: #fff;
-  box-shadow: 0px 2px 20px rgba(0,0,0,0.3);
+  box-shadow: 0px 1px 5px rgba(0,0,0,0.2);
 }

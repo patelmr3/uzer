@@ -1,1 +1,103 @@
-<page-title></page-title>
+<page-title pageTitle="Add user"></page-title>
+
+<section>
+  <form [formGroup]="registrationForm" (submit)="registerUser(registrationForm)">
+    <div class="form-control-group">
+      <label for="first-name">First name</label>
+      <input 
+      type="text"
+      id="first-name" 
+      class="form-control primary" 
+      formControlName="firstName"
+      placeholder="John"
+      minlength="3"
+      maxlength="15"
+      required>
+      <div class="error-message" 
+      *ngIf="
+      registrationForm.controls.firstName.errors &&
+      registrationForm.controls.firstName.touched">
+        <span *ngIf="registrationForm.controls.firstName.errors?.required">First name is required</span>
+        <span *ngIf="registrationForm.controls.firstName.errors?.minlength">First name is too short</span>        
+      </div>
+    </div>
+    <div class="form-control-group">
+      <label for="last-name">Last name</label>
+      <input 
+      type="text"
+      id="last-name" 
+      class="form-control primary" 
+      formControlName="lastName"
+      placeholder="Doe"
+      minlength="3"
+      maxlength="15"
+      required>
+      <div class="error-message" 
+      *ngIf="
+      registrationForm.controls.lastName.errors &&
+      registrationForm.controls.lastName.touched">
+        <span *ngIf="registrationForm.controls.lastName.errors?.required">Last name is required</span>
+        <span *ngIf="registrationForm.controls.lastName.errors?.minlength">Last name is too short</span>        
+      </div>
+    </div>
+    <div class="form-control-group">
+      <label for="email">Email</label>
+      <input 
+      type="email"
+      id="email" 
+      class="form-control primary" 
+      formControlName="email"
+      placeholder="john.doe@email.com"
+      required>
+      <div class="error-message" 
+      *ngIf="
+      registrationForm.controls.email.errors &&
+      registrationForm.controls.email.touched">
+        <span *ngIf="registrationForm.controls.email.errors?.required">Email is required</span>    
+        <span *ngIf="registrationForm.controls.email.errors?.pattern">Email is not valid</span>   
+      </div>
+    </div>
+    <div class="form-control-group">
+      <label for="phone">Phone</label>
+      <input 
+      type="tel"
+      id="phone" 
+      class="form-control primary" 
+      formControlName="phone"
+      placeholder="000-000-0000"
+      minlength="12"
+      maxlength="12">
+      <div class="error-message" 
+      *ngIf="
+      registrationForm.controls.phone.errors &&
+      registrationForm.controls.phone.touched">  
+        <span *ngIf="registrationForm.controls.phone.errors">Phone is not valid</span>   
+      </div>
+    </div>
+    <div class="form-control-group">
+      <label for="job-position">Job position</label>
+      <select 
+      id="job-position" 
+      class="form-control primary" 
+      formControlName="jobPosition">
+        <option value="" selected></option>
+        <option value="Front-end developer">Front-end developer</option>
+        <option value="Back-end developer">Back-end developer</option>
+        <option value="UI developer">UI developer</option>
+        <option value="Web designer">Web designer</option>
+        <option value="UX designer">UX designer</option>
+      </select>
+      <div class="error-message" 
+      *ngIf="
+      registrationForm.controls.phone.errors &&
+      registrationForm.controls.phone.touched">  
+        <span *ngIf="registrationForm.controls.phone.errors">Phone is not valid</span>   
+      </div>
+    </div>
+    <button 
+    pushDownBtn
+    class="btn btn-primary-lighter-border btn-wide" 
+    [disabled]="!registrationForm.valid">
+    Add</button>
+  </form>
+</section>
