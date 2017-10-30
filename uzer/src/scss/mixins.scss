@@ -20,10 +20,11 @@
 
 .btn{
   display: inline-block;
-  padding: .7em .9em;
+  padding: 1.3em .9em;
   font-family: $fontPrimary;
   font-size: 1.2em;
   font-weight: 800;
+  line-height: 0;
   border-radius: .3em;
   border: 2px solid;
   border-color: transparent;
@@ -65,7 +66,7 @@
 
   &.btn-wide{
     width: 100%;
-    padding: 1.2em; 
+    padding: 1.6em; 
   }
 
   &:disabled{
@@ -128,5 +129,34 @@ label{
   margin-top: 5px;
   font-family: $fontSecondary;
   color: #f77;
+}
+
+.user-initials{
+  width: 3em;
+  height: 3em;
+  padding-top: 1em;
+  font-size: 1.2em;
+  font-weight: 800;
+  text-align: center;
+  border-radius: .2em;
+  color: #fff;
+  background-color: $colorSecondary;
+}
+
+.user-job-position{
+  margin-top: 1.5em;
+  padding-top: .5em;
+  font-family: $fontSecondary;
+  color: $colorTextLight;
+  vertical-align: middle;
+  &:before{
+    display: inline-block;
+    content: ' ';
+    margin-right: 5px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: $colorSecondary;
+  }
 }
 

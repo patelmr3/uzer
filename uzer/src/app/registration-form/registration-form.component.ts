@@ -1,5 +1,6 @@
 import { UsersService } from '../users/users.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
@@ -10,7 +11,10 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class RegistrationFormComponent implements OnInit {
   registrationForm;
 
-  constructor(private userDataService: UsersService) { }
+  constructor(
+    private router: Router,
+    private usersService: UsersService
+  ) { }
 
   ngOnInit() {
     this.registrationForm = new FormGroup({
@@ -36,7 +40,9 @@ export class RegistrationFormComponent implements OnInit {
       phone: fc.phone.value,
       jobPosition: fc.jobPosition.value
     }
-    this.userDataService.insert(formData);
+    this.usersService.insert(formData, (userId) => {
+      this.router.navigate([`/users/${userId}`]);
+    });
   }
 
 }

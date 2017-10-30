@@ -12,7 +12,7 @@
         <div class="user-initials" [@slideIn]="slideInUserInitials">{{ user | initials }}</div>
         <div class="user-full-name" [@slideIn]="slideInUserInitials">{{ user.firstName + ' ' + user.lastName }}</div>
       </div>
-      <div class="user-job-title">{{ user.jobPosition }}</div>
+      <div class="user-job-position">{{ user.jobPosition }}</div>
     </article>
     <article *ngIf="!users">No users found</article>
   </section>

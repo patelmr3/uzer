@@ -1,20 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,700');
+@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 @import 'reset';
 @import 'mixins';
 
 html{
-  padding: 5%;
   font-family: $fontPrimary;
   font-size: 12px;
-  background-color: #ECEFF1;
-  background-image: url('../assets/pattern_light.svg');
-  background-size: 100px;
 }
 
 body{
-  max-width: 768px;
-  margin: auto;
+  overflow-y: scroll;
   color: $colorTextDark;
-  background-color: #fff;
-  box-shadow: 0px 1px 5px rgba(0,0,0,0.2);
 }
