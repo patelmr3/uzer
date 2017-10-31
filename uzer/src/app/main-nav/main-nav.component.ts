@@ -1,3 +1,4 @@
+import { UsersService } from './../users/users.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main-nav.component.scss']
 })
 export class MainNavComponent implements OnInit {
+  numUsers = 0;
 
-  constructor() { }
+  constructor(private usersService: UsersService) { }
 
   ngOnInit() {
+    this.numUsers = this.usersService.count();
+    this.usersService.userCreatedEvent.subscribe( (data) => {
+      this.numUsers = data.numUsers;
+    });
   }
 
 }

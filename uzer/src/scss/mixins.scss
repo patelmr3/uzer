@@ -86,6 +86,7 @@
 
 label{
   display: block;
+  margin-bottom: .5em;
   font-size: 1.3em;
   font-weight: 600;
 }
@@ -97,10 +98,11 @@ label{
 .form-control{
   display: block;
   width: 100%;
-  padding: 15px 0px;
-  font-size: 1.6em;
-  border: 0px;
-  border-bottom: 2px solid;
+  padding: .8em;
+  font-size: 1.3em;
+  color: $colorTextDark;
+  border-radius: .4em;
+  border: 2px solid;
   border-color: #eee;
   
   &::placeholder{

@@ -23,11 +23,10 @@ export class RegistrationFormComponent implements OnInit {
       'email': new FormControl('', [
         Validators.pattern(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i)
       ]),
-      'phone': new FormControl('', [
+      'phone': new FormControl('417-779-1010', [
         Validators.pattern(/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/)
       ]),
-      'about': new FormControl('', []),
-      'jobPosition': new FormControl('', [])
+      'jobPosition': new FormControl('Front-end developer', [])
     });
   }
 
@@ -41,7 +40,7 @@ export class RegistrationFormComponent implements OnInit {
       jobPosition: fc.jobPosition.value
     }
     this.usersService.insert(formData, (userId) => {
-      this.router.navigate([`/users/${userId}`]);
+      this.router.navigate([`/users/${userId}`]); //after completing the registration, navigate to user's profile page
     });
   }
 

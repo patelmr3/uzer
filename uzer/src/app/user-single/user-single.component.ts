@@ -24,8 +24,9 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 })
 export class UserSingleComponent implements OnInit {
   user: String;
-  userId: Number;
+  userId: String;
   userProfileSlideState;
+  paramMap;
 
   constructor(
     private router: Router,
@@ -35,11 +36,9 @@ export class UserSingleComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe( (params) => {
-      this.userId = params.userId; 
-      this.user = this.userService.selectOne(this.userId);
-      this.userProfileSlideState = 'in';
-    });
+    this.userId = this.activatedRoute.snapshot.paramMap.get('userId');
+    this.user = this.userService.selectOne(this.userId);
+    this.userProfileSlideState = 'in';
   }
 
   goBack() {
