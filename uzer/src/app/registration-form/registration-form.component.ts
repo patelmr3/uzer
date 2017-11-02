@@ -39,8 +39,9 @@ export class RegistrationFormComponent implements OnInit {
       phone: fc.phone.value,
       jobPosition: fc.jobPosition.value
     }
-    this.usersService.insert(formData, (userId) => {
-      this.router.navigate([`/users/${userId}`]); //after completing the registration, navigate to user's profile page
+    this.usersService.insert(formData).subscribe((data) => {
+      console.log(data);
+      this.router.navigate([`/users/${data['id']}`]); //after completing the registration, navigate to user's profile page
     });
   }
 

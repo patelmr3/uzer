@@ -23,7 +23,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
   ]
 })
 export class UserSingleComponent implements OnInit {
-  user: String;
+  user = {};
   userId: String;
   userProfileSlideState;
   paramMap;
@@ -36,8 +36,12 @@ export class UserSingleComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.userId = this.activatedRoute.snapshot.paramMap.get('userId');
-    this.user = this.userService.selectOne(this.userId);
+    this.userId = this.activatedRoute.snapshot.paramMap.get('userId');// retrive user id from route
+    //get user
+    this.userService.selectOne(this.userId).subscribe((data) => {
+      this.user = data['results'];
+    });
+    //set user profile animation state
     this.userProfileSlideState = 'in';
   }
 

@@ -4,7 +4,7 @@
   
   <section class="user-list">
     <article
-    [routerLink]="['/users', user.userId]"
+    [routerLink]="['/users', user._id]"
     pushDownBtn
     *ngFor="let user of users"
     class="user" [@slideIn]="slideInUserInitials">

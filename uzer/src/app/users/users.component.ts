@@ -31,7 +31,9 @@ export class UsersComponent implements OnInit {
   constructor(private userDataService: UsersService) { }
 
   ngOnInit() {
-    this.users = this.userDataService.select();
+    this.userDataService.select().subscribe((data) => {
+      this.users = data['results'];
+    });
     this.slideInUserInitials = 'in';
   }
 
