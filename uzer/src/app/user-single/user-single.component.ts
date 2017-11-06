@@ -1,5 +1,5 @@
 import { UsersService } from './../users/users.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { trigger, state, style, transition, animate } from '@angular/animations';
@@ -22,11 +22,13 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
     ])
   ]
 })
-export class UserSingleComponent implements OnInit {
-  user = {};
+export class UserSingleComponent implements OnInit, OnDestroy {
+  user;
   userId: String;
   userProfileSlideState;
   paramMap;
+  showSpinner: Boolean = true;
+  selectOneSubscription;
 
   constructor(
     private router: Router,
@@ -38,15 +40,21 @@ export class UserSingleComponent implements OnInit {
   ngOnInit() {
     this.userId = this.activatedRoute.snapshot.paramMap.get('userId');// retrive user id from route
     //get user
-    this.userService.selectOne(this.userId).subscribe((data) => {
-      this.user = data['results'];
-    });
+    this.selectOneSubscription = this.userService.selectOne(this.userId)
+      .subscribe((data) => {
+        this.user = data['results'];
+        this.showSpinner = false;
+      });
     //set user profile animation state
     this.userProfileSlideState = 'in';
   }
 
   goBack() {
     this.router.navigate(['/users']);
+  }
+
+  ngOnDestroy() {
+    this.selectOneSubscription.unsubscribe();
   }
 
 }

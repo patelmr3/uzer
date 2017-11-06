@@ -10,6 +10,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class RegistrationFormComponent implements OnInit {
   registrationForm;
+  errorMessage: String;
 
   constructor(
     private router: Router,
@@ -41,7 +42,13 @@ export class RegistrationFormComponent implements OnInit {
     }
     this.usersService.insert(formData).subscribe((data) => {
       console.log(data);
-      this.router.navigate([`/users/${data['id']}`]); //after completing the registration, navigate to user's profile page
+      if(data['status'] === 'success') {
+        this.usersService.emitUserCreated();
+        this.router.navigate([`/users/${data['id']}`]); //after completing the registration, navigate to user's profile page
+      } else {
+        this.errorMessage = data['message'];
+        console.log(data['message']);
+      }
     });
   }
 

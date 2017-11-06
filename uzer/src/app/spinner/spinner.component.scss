@@ -1,0 +1,33 @@
+@import '~scss/mixins';
+
+.spinner{
+  &.block{
+    display: block;
+    padding: 20px;
+    text-align: center;
+  }
+
+  &.lg{
+    font-size: 2em;
+  }
+
+  &.md{
+    font-size: 1.5em;
+  }
+
+  &.sm{
+    font-size: 1em;
+  }
+
+  &.white{
+    color:#fff;
+  }
+
+  &.primary{
+    color: $colorPrimary;
+  }
+
+  i{
+    font-size: inherit;
+  }
+}

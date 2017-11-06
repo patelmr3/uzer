@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { UsersService } from './users.service';
 import { trigger, state, style, animate, group, transition } from '@angular/animations';
 
@@ -23,18 +23,28 @@ import { trigger, state, style, animate, group, transition } from '@angular/anim
     ])
   ]
 })
-export class UsersComponent implements OnInit {
-
+export class UsersComponent implements OnInit, OnDestroy {
   users;
+  noUsers: Boolean = false;
   slideInUserInitials: String;
+  showSpinner: Boolean = false;
+  selectUsersSubscription;
 
   constructor(private userDataService: UsersService) { }
 
   ngOnInit() {
-    this.userDataService.select().subscribe((data) => {
-      this.users = data['results'];
-    });
+    this.showSpinner = true;
+    this.selectUsersSubscription = this.userDataService.select()
+      .subscribe((data) => {
+        this.users = data['results'];
+        this.showSpinner = false;
+        this.noUsers = (this.users.length) ? false : true;
+      });
     this.slideInUserInitials = 'in';
+  }
+
+  ngOnDestroy() {
+    this.selectUsersSubscription.unsubscribe();
   }
 
 }

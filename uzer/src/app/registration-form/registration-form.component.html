@@ -93,6 +93,7 @@
         <span *ngIf="registrationForm.controls.phone.errors">Phone is not valid</span>   
       </div>
     </div>
+    <div *ngIf="errorMessage" class="api-error-message">{{ errorMessage }}</div>
     <button 
     pushDownBtn
     class="btn btn-primary-lighter-border btn-wide" 

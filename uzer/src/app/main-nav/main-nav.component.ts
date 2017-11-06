@@ -12,9 +12,11 @@ export class MainNavComponent implements OnInit {
   constructor(private usersService: UsersService) { }
 
   ngOnInit() {
-    this.numUsers = this.usersService.count();
+    this.usersService.count().subscribe((data) => {
+      this.numUsers = data['totalUsers'];
+    });
     this.usersService.userCreatedEvent.subscribe( (data) => {
-      this.numUsers = data.numUsers;
+      this.numUsers += 1;
     });
   }
 

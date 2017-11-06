@@ -17,6 +17,7 @@ import { InitialsPipe } from './users/initials.pipe';
 
 import { UsersService } from './users/users.service';
 import { UserSingleComponent } from './user-single/user-single.component';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 const appRoutes: Routes = [
   {
@@ -53,7 +54,8 @@ const appRoutes: Routes = [
     LoginFormComponent,
     UsersComponent,
     InitialsPipe,
-    UserSingleComponent
+    UserSingleComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,

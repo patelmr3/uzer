@@ -7,12 +7,15 @@ class="user-profile-wrapper">
   class="btn btn-primary-light close-user-profile-btn"><i class="fa fa-angle-left"></i></button>
   <section class="user-profile">
     <header></header>
-    <section class="user-info">
-      <div class="user-profile-initials">{{ user | initials }}</div>
-      <h1 class="user-profile-name">{{ user.firstName + ' ' + user.lastName }}</h1>
-      <div class="user-profile-job-position">{{ user.jobPosition }}</div>
-      <div class="user-profile-email">{{ user.email }}</div>
-      <div class="user-profile-phone-number">{{ user.phone }}</div>
+    <spinner *ngIf="showSpinner" [inline]="false" size="lg" color="primary"></spinner>
+    <section class="user-info" *ngIf="user">
+      <div class="user-profile-initials" [style.backgroundColor]="user.profileColor">
+        {{ user | initials }}
+      </div>
+      <h1 class="user-profile-name">{{ user?.firstName + ' ' + user?.lastName }}</h1>
+      <div class="user-profile-job-position">{{ user?.jobPosition }}</div>
+      <div class="user-profile-email">{{ user?.email }}</div>
+      <div class="user-profile-phone-number">{{ user?.phone }}</div>
     </section>
   </section>
 </section>

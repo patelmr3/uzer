@@ -9,13 +9,24 @@
     *ngFor="let user of users"
     class="user" [@slideIn]="slideInUserInitials">
       <div class="user-name">
-        <div class="user-initials" [@slideIn]="slideInUserInitials">{{ user | initials }}</div>
-        <div class="user-full-name" [@slideIn]="slideInUserInitials">{{ user.firstName + ' ' + user.lastName }}</div>
+        <div 
+        class="user-initials" 
+        [@slideIn]="slideInUserInitials"
+        [style.backgroundColor]="user.profileColor">
+          {{ user | initials }}
+        </div>
+        <div 
+        class="user-full-name" 
+        [@slideIn]="slideInUserInitials">
+          {{ user.firstName + ' ' + user.lastName }}
+        </div>
       </div>
       <div class="user-job-position">{{ user.jobPosition }}</div>
     </article>
-    <article *ngIf="!users">No users found</article>
+    <article *ngIf="noUsers">No users found</article>
   </section>
+
+  <spinner *ngIf="showSpinner" [inline]="false" size="lg" color="primary"></spinner>
 
   <router-outlet></router-outlet>
 
