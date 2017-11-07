@@ -8,6 +8,11 @@ export class UsersService{
 
   constructor(private http: HttpClient) { }
 
+  //login
+  login(formData) {
+    return this.http.post(`${this.API}/login`, formData);
+  }
+
   //insert user
   insert(userData) {
     return this.http.post(`${this.API}/users/`, userData);

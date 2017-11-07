@@ -1,6 +1,6 @@
 <page-title pageTitle="Login"></page-title>
 
-<form [formGroup]="loginForm" (submit)="doLogin()" novalidate>
+<form [formGroup]="loginForm" (submit)="doLogin(loginForm)" novalidate>
   <div class="form-control-group">
     <label for="first-name">First name</label>
     <input 
@@ -8,7 +8,20 @@
     type="text" 
     class="form-control primary" 
     formControlName="firstName" 
-    placeholder="John">
+    placeholder="John"
+    minlength="3"
+    maxlength="15">
+    <div 
+    class="error-message"
+    *ngIf="loginForm.controls.firstName.errors &&
+    loginForm.controls.firstName.touched">
+      <span *ngIf="loginForm.controls.firstName.errors?.minlength">
+        First name is too short
+      </span>
+      <span *ngIf="loginForm.controls.firstName.errors?.required">
+        First name is required
+      </span>
+    </div>
   </div>
   <div class="form-control-group">
     <label for="email">Email</label>
@@ -18,6 +31,23 @@
     class="form-control primary" 
     formControlName="email" 
     placeholder="john@email.com">
+    <div 
+    class="error-message"
+    *ngIf="loginForm.controls.email.errors &&
+    loginForm.controls.email.touched">
+      <span *ngIf="loginForm.controls.email.errors?.pattern">
+        Invalid email
+      </span>
+      <span *ngIf="loginForm.controls.email.errors?.required">
+        Email is required
+      </span>
+    </div>
   </div>
-  <button pushDownBtn id="log-in-btn" class="btn btn-primary-lighter-border btn-wide">Log in</button>
+  <button 
+  [disabled]="!loginForm.valid" 
+  pushDownBtn 
+  id="log-in-btn" 
+  class="btn btn-primary-lighter-border btn-wide">
+    Log in
+  </button>
 </form>

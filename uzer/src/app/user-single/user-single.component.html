@@ -8,7 +8,10 @@ class="user-profile-wrapper">
   <section class="user-profile">
     <header></header>
     <spinner *ngIf="showSpinner" [inline]="false" size="lg" color="primary"></spinner>
-    <section class="user-info" *ngIf="user">
+    <section 
+    [@userInfoSlideIn]="userInfoState"
+    class="user-info" 
+    *ngIf="user">
       <div class="user-profile-initials" [style.backgroundColor]="user.profileColor">
         {{ user | initials }}
       </div>

@@ -19,6 +19,17 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
         transform: 'scale(1)'
       })),
       transition('void => in', animate('.3s ease-in-out'))
+    ]),
+    trigger('userInfoSlideIn',[
+      state('void', style({
+        opacity: 0,
+        transform: 'translateY(20px)'
+      })),
+      state('in', style({
+        opacity: 1,
+        transform: 'translateY(0px)'
+      })),
+      transition('void => in', animate('.3s ease-in-out'))
     ])
   ]
 })
@@ -29,6 +40,7 @@ export class UserSingleComponent implements OnInit, OnDestroy {
   paramMap;
   showSpinner: Boolean = true;
   selectOneSubscription;
+  userInfoState: String; 
 
   constructor(
     private router: Router,
@@ -44,6 +56,7 @@ export class UserSingleComponent implements OnInit, OnDestroy {
       .subscribe((data) => {
         this.user = data['results'];
         this.showSpinner = false;
+        this.userInfoState = 'in';
       });
     //set user profile animation state
     this.userProfileSlideState = 'in';
