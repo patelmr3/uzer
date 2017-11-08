@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-registration-form',
+  selector: 'registration-form',
   templateUrl: './registration-form.component.html',
   styleUrls: ['./registration-form.component.scss']
 })
@@ -40,8 +40,10 @@ export class RegistrationFormComponent implements OnInit {
       phone: fc.phone.value,
       jobPosition: fc.jobPosition.value
     }
+
     this.usersService.insert(formData).subscribe((data) => {
       console.log(data);
+
       if(data['status'] === 'success') {
         this.usersService.emitUserCreated();
         this.router.navigate([`/users/${data['id']}`]); //after completing the registration, navigate to user's profile page

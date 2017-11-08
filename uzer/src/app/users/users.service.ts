@@ -2,8 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, EventEmitter } from '@angular/core';
 
 @Injectable()
-export class UsersService{
+export class UsersService {
   userCreatedEvent = new EventEmitter();
+  userLoggedInEvent = new EventEmitter();
+
   API = 'http://localhost:3030'; //API url
 
   constructor(private http: HttpClient) { }
@@ -26,12 +28,16 @@ export class UsersService{
     return this.http.get(`${this.API}/users/${userId}`);
   }
   //count users
-  count(){
-    return this.http.get(`${this.API}`); 
+  count() {
+    return this.http.get(`${this.API}`);
   }
 
   //emit event when new user is created
   emitUserCreated() {
     this.userCreatedEvent.emit();
+  }
+  //emit event when new user is logedIn
+  emitUserLoggedIn(data) {
+    this.userLoggedInEvent.emit(data);
   }
 }

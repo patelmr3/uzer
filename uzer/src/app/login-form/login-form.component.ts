@@ -24,16 +24,19 @@ export class LoginFormComponent implements OnInit {
       ])
     });
   }
-
+  //login
   doLogin(loginForm) {
     let fc = loginForm.controls;
     let formData = {
       firstName: fc.firstName.value,
       email: fc.email.value
     }
-    if(loginForm.valid) {
+
+    if (loginForm.valid) {
       this.userSerice.login(formData).subscribe((res) => {
         console.log(res);
+        window.sessionStorage.setItem('loggedInUser', JSON.stringify(res['data']));
+        this.userSerice.emitUserLoggedIn(res['data']);
       });
     }
   }

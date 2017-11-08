@@ -9,17 +9,6 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
   templateUrl: './user-single.component.html',
   styleUrls: ['./user-single.component.scss'],
   animations: [
-    trigger('slideIn', [
-      state('void', style({
-        opacity: 0,
-        transform: 'scale(0.9)'
-      })),
-      state('in', style({
-        opacity: 1,
-        transform: 'scale(1)'
-      })),
-      transition('void => in', animate('.3s ease-in-out'))
-    ]),
     trigger('userInfoSlideIn',[
       state('void', style({
         opacity: 0,

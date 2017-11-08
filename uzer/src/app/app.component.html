@@ -1,5 +1,13 @@
 <main-nav></main-nav>
 
-<section class="container">
+<aside 
+*ngIf="showRegistration"
+id="aside-registration" 
+class="aside"
+[@slideInRight]>
+  <registration-form></registration-form> 
+</aside>
+
+<section>
   <router-outlet></router-outlet>
 </section>

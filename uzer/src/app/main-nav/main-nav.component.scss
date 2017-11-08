@@ -1,90 +1,84 @@
 @import '~scss/mixins';
-
-header{
-  background-color: $colorPrimary;
+header {
+  background-color: color_hsla($name: 'ui', $l: 95);
   padding: 10px;
 }
 
-nav{
+nav {
   display: flex;
   justify-content: space-between;
   padding: 0px 10px;
 }
 
-.nav-left{
+.nav-left {
   display: flex;
-  .logo{
-    padding: 0px 10px;
+  .logo {
+    margin-right: 10px;
+    padding: 5px 10px 0px 10px;
+    color: color_hsla($name: 'primary');
+    outline: none;
   }
   .user-count {
     padding: 0em .4em .18em;
     font-size: 1em;
     font-weight: 500;
-    background-color: #ff6d62;
+    background-color: color_hsla($name: 'error');
     border-radius: .1em;
   }
 }
 
-.nav-right{
+.nav-right {
   display: flex;
 }
 
 //user dropdown ==========================
-.user-dropdown{
+.user-dropdown {
   position: relative;
-  margin: 3px 20px 0px 15px;
+  margin: 0px 20px 0px 15px;
   border-radius: 5px;
   transition: ease background-color .3s;
-
-  &:hover{
-    background-color: $colorPrimaryLight;
+  background-color: color_hsla($name: 'ui', $l: 89);
+  &:hover {
+    background-color: color_hsla($name: 'ui', $l: 80);
   }
 }
+
 //user dropdown toggle ===================
-.user-dropdown-toggle{
+.user-dropdown-toggle {
   display: flex;
   cursor: pointer;
-
-  .user-initials{
+  .user-initials {
     position: relative;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: $colorPrimaryLight;
-    span{
+    background-color: color_hsla($name: 'primary', $l: 40);
+    span {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
     }
   }
-
-  i{
+  i {
     display: block;
     padding: 15px 10px 15px 5px;
-    color: #fff;
+    color: color_hsla($name: 'ui', $l: 50);;
   }
 }
+
 //user dropdown target ===================
-.user-dropdown-target{
+.user-dropdown-target {
   overflow: hidden;
   position: absolute;
-  top: 45px;;
-  right: 0px;  
+  top: 60px;
+  right: 0px;
   min-width: 150px;
   background-color: #fff;
   border-radius: 5px;
-  box-shadow: 0px 1px 5px rgba(0,0,0,0.2);
-
-  .user-dropdown-link{
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2);
+  .user-dropdown-link {
     padding: 10px 15px;
-    
-    &:hover{
+    &:hover {
       cursor: pointer;
       background-color: #eee;
     }
   }
 }
-
-
-

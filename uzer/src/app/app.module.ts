@@ -23,25 +23,19 @@ const appRoutes: Routes = [
   {
     path: '',
     component: LoginFormComponent
-  },    
+  },  
   {
     path: 'login',
     component: LoginFormComponent
   },
   {
-    path: 'register',
-    component: RegistrationFormComponent
-  },
-  {
     path: 'users',
     component: UsersComponent,
-    children: [
-      {
-        path: ':userId',
-        component: UserSingleComponent
-      }
-    ]
   },
+  {
+    path: 'users/:userId',
+    component: UserSingleComponent
+  }
 ];
 
 @NgModule({

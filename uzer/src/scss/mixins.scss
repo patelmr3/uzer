@@ -1,7 +1,23 @@
 @import 'variables';
 
+@function color_hsla($name: 'primary', $l:-1, $a: 1) {
+  @if ($name == 'primary') {
+    @if($l == -1) {$l: 48;}
+    @return hsla(231, 48, $l, $a);
+  } @else if ($name == 'secondary') {
+    @if($l == -1) {$l: 37;}
+    @return hsla(172, 100, $l, $a);
+  } @else if ($name == 'ui') {
+    @if($l == -1) {$l: 46;}
+    @return hsla(200, 18, $l, $a);
+  } @else if ($name == 'error') {
+    @if($l == -1) {$l: 58;}
+    @return hsla(4, 90, $l, $a);
+  }
+}
+
 .container{
-  max-width: 600px;
+  max-width: 1366px;
   margin: 0px auto;
   padding: 20px 20px 100px;
 }
@@ -25,8 +41,8 @@
   font-size: 1.2em;
   font-weight: 800;
   line-height: 0;
-  border-radius: .3em;
   border: 2px solid;
+  border-radius: 3px;
   border-color: transparent;
   color: #fff;
   background-color: transparent;
@@ -34,37 +50,38 @@
   outline: none;
   
   &.btn-primary{
-    background-color: $colorPrimary;
+    background-color: color_hsla($name: 'primary');
     
     &:hover{
-      background-color: $colorPrimaryLight;
+      background-color: color_hsla($name: 'primary', $l: 50);
     }
   }
   
   &.btn-primary-light{
-    background-color: $colorPrimaryLight;
+    background-color: color_hsla($name: 'primary', $l: 60);
+    transition: ease background-color .1s;
     
     &:hover{
-      background-color: #6c87f9;
+      background-color: color_hsla($name: 'primary', $l: 40);
     }
   }
 
   &.btn-primary-lighter-border{
-    color: $colorPrimary;
-    background-color: $colorPrimaryLighter;
-    border-color: $colorPrimary;
+    color: color_hsla($name: 'primary');
+    background-color: color_hsla($name: 'primary', $l: 60);
+    border-color: color_hsla($name: 'primary');
     
     &:hover{
       color: #fff;
-      background-color: #6c87f9;
+      background-color: color_hsla($name: 'primary', $l: 40);
     }
   }
   
   &.btn-secondary{
-    background-color: $colorSecondary;
+    background-color: color_hsla($name: 'secondary');
     
     &:hover{
-      background-color: #00d4b7;
+      background-color: color_hsla($name: 'secondary', $l: 30);
     }
   }
 
@@ -76,10 +93,10 @@
   &:disabled{
     border: 0px;
     color: #fff;
-    background-color: $colorPrimaryLighter;
+    background-color: color_hsla($name: 'primary', $l: 60);
     
     &:hover{
-      background-color: $colorPrimaryLighter;
+      background-color: color_hsla($name: 'primary', $l: 60);
       cursor: default;
     }
   }
@@ -92,8 +109,9 @@
 label{
   display: block;
   margin-bottom: .5em;
-  font-size: 1.3em;
-  font-weight: 600;
+  font-size: 1.1em;
+  font-weight: 500;
+  color: color_hsla($name: 'ui', $l: 50)
 }
 
 .form-control-group{
@@ -103,11 +121,11 @@ label{
 .form-control{
   display: block;
   width: 100%;
-  padding: .8em;
-  font-size: 1.3em;
-  color: $colorTextDark;
-  border-radius: .4em;
+  padding: .9em;
+  font-size: 1.2em;
+  color: color_hsla($name: 'ui', $l: 20);
   border: 2px solid;
+  border-radius: 3px;
   border-color: #eee;
   
   &::placeholder{
@@ -115,27 +133,19 @@ label{
   }
   
   &.primary{
-    border-color: $colorPrimaryLighter;
+    border-color: color_hsla($name: 'ui', $l: 90);
   }
 
   &:focus{
     outline: none;
-    border-color: $colorPrimary;    
-  }
-
-  &.ng-valid.ng-dirty{
-    border-color: $colorSecondary;
-  }
-
-  &.ng-invalid.ng-touched{
-    border-color: rgb(206, 48, 48);
+    border-color: color_hsla($name: 'ui', $l: 80);   
   }
 }
 
 .error-message {
   margin-top: 5px;
   font-family: $fontSecondary;
-  color: #f77;
+  color: color_hsla($name: 'error');
 }
 
 .user-initials{
@@ -147,7 +157,7 @@ label{
   text-align: center;
   border-radius: .2em;
   color: #fff;
-  background-color: $colorSecondary;
+  background-color: color_hsla($name: 'secondary');
 }
 
 .user-job-position{
@@ -164,7 +174,16 @@ label{
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: $colorSecondary;
+    background-color: color_hsla($name: 'secondary');
   }
+}
+
+.aside{
+  z-index: 102;
+  position: absolute;
+  right: 0px;
+  width: 400px;
+  padding: 30px 30px;
+  background-color: color_hsla($name: 'ui', $l: 95);
 }
 

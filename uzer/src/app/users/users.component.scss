@@ -8,14 +8,13 @@
 .user{
   display: flex;
   flex-direction: column;
-  width: 48%;
+  width: 31.33%;
   margin: 1%;
   padding: 1.1em;
-  border: 1px solid $colorPrimaryLighter;
   border-radius: .3em;
+  background-color: color_hsla($name: 'ui', $l: 98);
   &:hover{
-    border-color: $colorSecondary;
-    background-color: $colorPrimaryLighter;
+    background-color: color_hsla($name: 'ui', $l: 93);
     cursor: pointer;
   }
 }

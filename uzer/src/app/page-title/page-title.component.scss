@@ -1,23 +1,28 @@
+@import '~scss/mixins';
+
 .page-title-wrapper{
   overflow: hidden;
-  height: 47px;
-  margin: 30px 10px;
+  height: 100px;
+  padding: 20px;
   text-align: center;
+  background-color: color_hsla($name: 'primary');
 }
 .page-title{
   position: relative;
   display: inline-block;
   margin-top: 47px;
   padding: 10px;
+  border-radius: 3px;
   font-size: 2em;
   font-weight: 800;
-  color: #4460D1;
+  //color: #fff;
+  color: color_hsla($name: 'ui', $l: 90);
   &:after{
     content: '';
     display: block;
     width: 100%;
     margin-top: 10px;
-    border-bottom: 5px solid #00BFA5;
+    border-bottom: 5px solid color_hsla($name: 'secondary');
     transform: scale(0);
     transition: ease transform .3s;
   }

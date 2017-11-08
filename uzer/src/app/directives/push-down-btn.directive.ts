@@ -1,19 +1,19 @@
-import { Directive, ElementRef } from '@angular/core';
+import { Directive, HostListener, HostBinding } from '@angular/core';
 
 @Directive({
   selector: '[pushDownBtn]'
 })
 export class PushDownBtnDirective {
+  @HostBinding('class.down') isDown = false;
+  @HostListener('mousedown') mouseDown() {
+    this.isDown = true;
+  } 
+  @HostListener('mouseup') mouseUp() {
+    this.isDown = false;
+  } 
 
-  constructor(private el: ElementRef) { }
+  constructor() { }
 
-  ngOnInit() {
-    this.el.nativeElement.onmousedown = () => {
-      this.el.nativeElement.classList.add('down');
-    };
-    this.el.nativeElement.onmouseup = () => {
-      this.el.nativeElement.classList.remove('down');
-    }
-  }
+  ngOnInit() {}
 
 }
