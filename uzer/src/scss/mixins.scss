@@ -44,12 +44,17 @@
   border: 2px solid;
   border-radius: 3px;
   border-color: transparent;
-  color: #fff;
-  background-color: transparent;
+  color: color_hsla($name: 'ui', $l: 30);
+  background-color: color_hsla($name: 'ui', $l: 95);
   cursor: pointer;
   outline: none;
+
+  &:hover{
+    background-color: color_hsla($name: 'ui', $l: 90);
+  }
   
   &.btn-primary{
+    color: #fff;
     background-color: color_hsla($name: 'primary');
     
     &:hover{
@@ -58,6 +63,7 @@
   }
   
   &.btn-primary-light{
+    color: #fff;
     background-color: color_hsla($name: 'primary', $l: 60);
     transition: ease background-color .1s;
     
@@ -78,6 +84,7 @@
   }
   
   &.btn-secondary{
+    color: #fff;
     background-color: color_hsla($name: 'secondary');
     
     &:hover{
@@ -161,7 +168,6 @@ label{
 }
 
 .user-job-position{
-  margin-top: 1.5em;
   padding-top: .5em;
   font-family: $fontSecondary;
   color: $colorTextLight;

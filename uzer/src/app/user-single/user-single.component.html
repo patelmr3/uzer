@@ -1,24 +1,35 @@
-<section
-class="user-profile-wrapper">
-  <button 
-  pushDownBtn
-  (click)="goBack()"
-  class="btn btn-primary-light close-user-profile-btn"><i class="fa fa-angle-left"></i></button>
-  <section class="user-profile">
-    <header></header>
-    <spinner *ngIf="showSpinner" [inline]="false" size="lg" color="primary"></spinner>
-    <section 
-    [@userInfoSlideIn]="userInfoState"
-    class="user-info" 
-    *ngIf="user">
-      <div class="user-profile-initials" [style.backgroundColor]="user.profileColor">
-        {{ user | initials }}
-      </div>
-      <h1 class="user-profile-name">{{ user?.firstName + ' ' + user?.lastName }}</h1>
-      <div class="user-profile-job-position">{{ user?.jobPosition }}</div>
-      <div class="user-profile-email">{{ user?.email }}</div>
-      <div class="user-profile-phone-number">{{ user?.phone }}</div>
-    </section>
+<section class="user-profile-wrapper">
+  <!-- user profile banner -->
+  <section class="user-profile-banner">
+    <button pushDownBtn (click)="goBack()" class="btn btn-primary-light close-user-profile-btn">
+      <i class="fa fa-angle-left"></i>
+    </button>
   </section>
-</section>
+  <!-- spinner -->
+  <spinner *ngIf="showSpinner" [inline]="false" size="lg" color="primary"></spinner>
 
+  <!-- user profile content -->
+  <section class="user-profile-content" *ngIf="user">
+    <!-- user profile content left -->
+    <aside class="user-profile-content-left">this is a sidebar</aside>
+    <!-- user profile content main -->
+    <section class="user-profile-content-main">
+      <!-- user info -->
+      <section class="user-info user-profile-card">
+        <h1 class="user-profile-name">{{ user?.firstName + ' ' + user?.lastName }}</h1>
+        <div class="user-profile-job-position">{{ user?.jobPosition }}</div>
+        <div class="user-profile-email">{{ user?.email }}</div>
+        <div class="user-profile-phone-number">{{ user?.phone }}</div>
+      </section>
+
+      <section class="user-profile-cards">
+        <div class="user-profile-card">
+          <skills></skills> <!--Skills will be loaded here-->
+        </div>
+      </section>
+
+    </section>
+
+  </section>
+
+</section>

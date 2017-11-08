@@ -1,0 +1,54 @@
+@import '~scss/mixins';
+.section-header {
+  margin: 1em 0em 1.5em;
+  font-size: 1.5em;
+}
+
+.no-skills-message {
+  padding: 30px;
+  border-radius: 3px;
+  font-size: 1.5em;
+  text-align: center;
+  color: color_hsla($name: 'ui', $l: 60);
+  background-color: color_hsla($name: 'ui', $l: 95);
+}
+
+.skill {
+  display: flex;
+  justify-content: space-between;
+  margin: 1em 0em;
+
+  .skill-name{
+    font-size: 1.3em;
+    font-weight: 700;
+  }
+
+  .expertise-level{
+    width: 40%;
+    height: 10px;
+    background-color: color_hsla($name: 'ui', $l: 95);
+
+    .expertise-level-bar{
+      height: 10px;
+      background-color: color_hsla($name: 'primary');
+    }
+  }
+}
+
+.add-skill-btn{
+  margin: 10px 0px;
+  padding: .5em;
+}
+
+.add-skill-wrapper{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  margin-top: 10px;
+  padding: 15px;
+  border: 1px solid color_hsla($name: 'ui', $l: 95);
+  background-color: #fff;
+  box-shadow: 0px 1px 10px rgba(0, 0, 0, .3);
+}

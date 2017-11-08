@@ -18,6 +18,7 @@ import { InitialsPipe } from './users/initials.pipe';
 import { UsersService } from './users/users.service';
 import { UserSingleComponent } from './user-single/user-single.component';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { SkillsComponent } from './skills/skills.component';
 
 const appRoutes: Routes = [
   {
@@ -49,7 +50,8 @@ const appRoutes: Routes = [
     UsersComponent,
     InitialsPipe,
     UserSingleComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    SkillsComponent
   ],
   imports: [
     BrowserModule,
