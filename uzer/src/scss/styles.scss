@@ -2,14 +2,207 @@
 @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 @import 'reset';
 @import 'mixins';
+@import 'range_input';
 
-html{
+html {
   font-family: $fontPrimary;
   font-size: 12px;
 }
 
-body{
+body {
   overflow-x: hidden;
-  color: color_hsla($name: 'ui', $l: 30);
-  background-color: color_hsla($name: 'ui', $l: 98);
+  color: _hsla($name: 'ui', $l: 30);
+  background-color: _hsla($name: 'ui', $l: 98);
+}
+
+.container {
+  max-width: 1366px;
+  margin: 0px auto;
+  padding: 20px 20px 100px;
+}
+
+.cf {
+  &:before {
+    clear: both;
+  }
+  &:after {
+    display: table;
+    contain: '';
+    clear: both;
+  }
+}
+
+.backdrop{
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,.8);
+}
+
+.btn {
+  display: inline-block;
+  padding: 1.3em .9em;
+  font-family: $fontPrimary;
+  font-size: 1.2em;
+  font-weight: 800;
+  line-height: 0;
+  border: 2px solid;
+  border-radius: 3px;
+  border-color: transparent;
+  color: _hsla($name: 'ui', $l: 30);
+  background-color: _hsla($name: 'ui', $l: 95);
+  cursor: pointer;
+  outline: none;
+  &:hover {
+    background-color: _hsla($name: 'ui', $l: 90);
+  }
+  &.btn-primary {
+    color: #fff;
+    background-color: _hsla($name: 'primary');
+    &:hover {
+      background-color: _hsla($name: 'primary', $l: 50);
+    }
+  }
+  &.btn-primary-light {
+    color: #fff;
+    background-color: _hsla($name: 'primary', $l: 60);
+    transition: ease background-color .1s;
+    &:hover {
+      background-color: _hsla($name: 'primary', $l: 40);
+    }
+  }
+  &.btn-primary-lighter-border {
+    color: _hsla($name: 'primary');
+    background-color: _hsla($name: 'primary', $l: 60);
+    border-color: _hsla($name: 'primary');
+    &:hover {
+      color: #fff;
+      background-color: _hsla($name: 'primary', $l: 40);
+    }
+  }
+  &.btn-secondary {
+    color: #fff;
+    background-color: _hsla($name: 'secondary');
+    &:hover {
+      background-color: _hsla($name: 'secondary', $l: 30);
+    }
+  }
+  &.btn-wide {
+    width: 100%;
+    padding: 1.6em;
+  }
+  &:disabled {
+    color: #fff;
+    background-color: _hsla($name: 'ui', $l: 90);
+    &:hover {
+      background-color: _hsla($name: 'ui', $l: 90);
+      cursor: default;
+    }
+  }
+}
+
+.down {
+  transform: scale(0.96) !important;
+}
+
+label {
+  display: block;
+  margin-bottom: .5em;
+  font-size: 1.3em;
+  font-weight: 500;
+  color: _hsla($name: 'ui', $l: 50)
+}
+
+.form-control-group {
+  margin-bottom: 25px;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  padding: .9em;
+  font-size: 1.2em;
+  color: _hsla($name: 'ui', $l: 20);
+  border: 2px solid;
+  border-radius: 3px;
+  border-color: #eee;
+  &::placeholder {
+    opacity: .5;
+  }
+  &.primary {
+    border-color: _hsla($name: 'ui', $l: 90);
+  }
+  &:focus {
+    outline: none;
+    border-color: _hsla($name: 'ui', $l: 80);
+  }
+}
+
+input[type=range] {
+  -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+  width: 100%; /* Specific width is required for Firefox. */
+  background: transparent; /* Otherwise white in Chrome */
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+
+input[type=range]:focus {
+  outline: none; /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
+}
+
+input[type=range]::-ms-track {
+  width: 100%;
+  cursor: pointer;
+
+  /* Hides the slider so custom styles can be added */
+  background: transparent; 
+  border-color: transparent;
+  color: transparent;
+}
+
+.error-message {
+  margin-top: 5px;
+  font-family: $fontSecondary;
+  color: _hsla($name: 'error');
+}
+
+.user-initials {
+  width: 3em;
+  height: 3em;
+  padding-top: 1em;
+  font-size: 1.2em;
+  font-weight: 800;
+  text-align: center;
+  border-radius: .2em;
+  color: #fff;
+  background-color: _hsla($name: 'secondary');
+}
+
+.user-job-position {
+  padding-top: .5em;
+  font-family: $fontSecondary;
+  color: _hsla($name: 'ui', $l: 60);
+  vertical-align: middle;
+  &:before {
+    display: inline-block;
+    content: ' ';
+    margin-right: 5px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: _hsla($name: 'secondary');
+  }
+}
+
+.aside {
+  z-index: 102;
+  position: absolute;
+  right: 0px;
+  width: 400px;
+  padding: 30px 30px;
+  background-color: _hsla($name: 'ui', $l: 95);
 }

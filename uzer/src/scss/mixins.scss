@@ -1,195 +1,29 @@
-@import 'variables';
+$fontPrimary: 'Roboto', sans-serif;
+$fontSecondary: Arial, "Helvetica Neue", Helvetica, sans-serif;
 
-@function color_hsla($name: 'primary', $l:-1, $a: 1) {
-  @if ($name == 'primary') {
-    @if($l == -1) {$l: 48;}
+@function _hsla($name: 'primary', $l:-1, $a: 1) {
+  @if ($name=='primary') {
+    @if($l==-1) {
+      $l: 48;
+    }
     @return hsla(231, 48, $l, $a);
-  } @else if ($name == 'secondary') {
-    @if($l == -1) {$l: 37;}
+  }
+  @else if ($name=='secondary') {
+    @if($l==-1) {
+      $l: 37;
+    }
     @return hsla(172, 100, $l, $a);
-  } @else if ($name == 'ui') {
-    @if($l == -1) {$l: 46;}
+  }
+  @else if ($name=='ui') {
+    @if($l==-1) {
+      $l: 46;
+    }
     @return hsla(200, 18, $l, $a);
-  } @else if ($name == 'error') {
-    @if($l == -1) {$l: 58;}
+  }
+  @else if ($name=='error') {
+    @if($l==-1) {
+      $l: 58;
+    }
     @return hsla(4, 90, $l, $a);
   }
 }
-
-.container{
-  max-width: 1366px;
-  margin: 0px auto;
-  padding: 20px 20px 100px;
-}
-
-.cf{
-  &:before{
-    clear: both;
-  }
-  
-  &:after{
-    display: table;
-    contain: '';
-    clear: both;
-  }
-}
-
-.btn{
-  display: inline-block;
-  padding: 1.3em .9em;
-  font-family: $fontPrimary;
-  font-size: 1.2em;
-  font-weight: 800;
-  line-height: 0;
-  border: 2px solid;
-  border-radius: 3px;
-  border-color: transparent;
-  color: color_hsla($name: 'ui', $l: 30);
-  background-color: color_hsla($name: 'ui', $l: 95);
-  cursor: pointer;
-  outline: none;
-
-  &:hover{
-    background-color: color_hsla($name: 'ui', $l: 90);
-  }
-  
-  &.btn-primary{
-    color: #fff;
-    background-color: color_hsla($name: 'primary');
-    
-    &:hover{
-      background-color: color_hsla($name: 'primary', $l: 50);
-    }
-  }
-  
-  &.btn-primary-light{
-    color: #fff;
-    background-color: color_hsla($name: 'primary', $l: 60);
-    transition: ease background-color .1s;
-    
-    &:hover{
-      background-color: color_hsla($name: 'primary', $l: 40);
-    }
-  }
-
-  &.btn-primary-lighter-border{
-    color: color_hsla($name: 'primary');
-    background-color: color_hsla($name: 'primary', $l: 60);
-    border-color: color_hsla($name: 'primary');
-    
-    &:hover{
-      color: #fff;
-      background-color: color_hsla($name: 'primary', $l: 40);
-    }
-  }
-  
-  &.btn-secondary{
-    color: #fff;
-    background-color: color_hsla($name: 'secondary');
-    
-    &:hover{
-      background-color: color_hsla($name: 'secondary', $l: 30);
-    }
-  }
-
-  &.btn-wide{
-    width: 100%;
-    padding: 1.6em; 
-  }
-
-  &:disabled{
-    border: 0px;
-    color: #fff;
-    background-color: color_hsla($name: 'primary', $l: 60);
-    
-    &:hover{
-      background-color: color_hsla($name: 'primary', $l: 60);
-      cursor: default;
-    }
-  }
-}
-
-.down{
-  transform: scale(0.96) !important;
-}
-
-label{
-  display: block;
-  margin-bottom: .5em;
-  font-size: 1.1em;
-  font-weight: 500;
-  color: color_hsla($name: 'ui', $l: 50)
-}
-
-.form-control-group{
-  margin-bottom: 25px;
-}
-
-.form-control{
-  display: block;
-  width: 100%;
-  padding: .9em;
-  font-size: 1.2em;
-  color: color_hsla($name: 'ui', $l: 20);
-  border: 2px solid;
-  border-radius: 3px;
-  border-color: #eee;
-  
-  &::placeholder{
-    opacity: .5;
-  }
-  
-  &.primary{
-    border-color: color_hsla($name: 'ui', $l: 90);
-  }
-
-  &:focus{
-    outline: none;
-    border-color: color_hsla($name: 'ui', $l: 80);   
-  }
-}
-
-.error-message {
-  margin-top: 5px;
-  font-family: $fontSecondary;
-  color: color_hsla($name: 'error');
-}
-
-.user-initials{
-  width: 3em;
-  height: 3em;
-  padding-top: 1em;
-  font-size: 1.2em;
-  font-weight: 800;
-  text-align: center;
-  border-radius: .2em;
-  color: #fff;
-  background-color: color_hsla($name: 'secondary');
-}
-
-.user-job-position{
-  padding-top: .5em;
-  font-family: $fontSecondary;
-  color: $colorTextLight;
-  vertical-align: middle;
-  
-  &:before{
-    display: inline-block;
-    content: ' ';
-    margin-right: 5px;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background-color: color_hsla($name: 'secondary');
-  }
-}
-
-.aside{
-  z-index: 102;
-  position: absolute;
-  right: 0px;
-  width: 400px;
-  padding: 30px 30px;
-  background-color: color_hsla($name: 'ui', $l: 95);
-}
-

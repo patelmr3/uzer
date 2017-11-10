@@ -12,9 +12,9 @@
   margin: 1%;
   padding: 1.1em;
   border-radius: .3em;
-  background-color: color_hsla($name: 'ui', $l: 98);
+  background-color: _hsla($name: 'ui', $l: 98);
   &:hover{
-    background-color: color_hsla($name: 'ui', $l: 93);
+    background-color: _hsla($name: 'ui', $l: 93);
     cursor: pointer;
   }
 }
@@ -24,7 +24,7 @@
   flex-direction: row;
 
   .user-initials{
-    @extend .user-initials;
+    //@extend .user-initials;
   }
 
   .user-full-name{
@@ -36,7 +36,7 @@
 }
 
 .user-job-position{
-  @extend .user-job-position;
+  //@extend .user-job-position;
 }
 
 @media all and (max-width: 768px) {

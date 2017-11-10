@@ -16,9 +16,12 @@ import { UsersComponent } from './users/users.component';
 import { InitialsPipe } from './users/initials.pipe';
 
 import { UsersService } from './users/users.service';
+import { AppEventsService } from './services/app-events-service/app-events.service';
 import { UserSingleComponent } from './user-single/user-single.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { SkillsComponent } from './skills/skills.component';
+import { BackdropComponent } from './backdrop/backdrop.component';
+import { BackdropDirective } from './backdrop.directive';
 
 const appRoutes: Routes = [
   {
@@ -51,7 +54,9 @@ const appRoutes: Routes = [
     InitialsPipe,
     UserSingleComponent,
     SpinnerComponent,
-    SkillsComponent
+    SkillsComponent,
+    BackdropComponent,
+    BackdropDirective
   ],
   imports: [
     BrowserModule,
@@ -60,7 +65,7 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [UsersService],
+  providers: [UsersService, AppEventsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

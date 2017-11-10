@@ -5,7 +5,7 @@
   height: 100px;
   padding: 20px;
   text-align: center;
-  background-color: color_hsla($name: 'primary');
+  background-color: _hsla($name: 'primary');
 }
 .page-title{
   position: relative;
@@ -16,13 +16,13 @@
   font-size: 2em;
   font-weight: 800;
   //color: #fff;
-  color: color_hsla($name: 'ui', $l: 90);
+  color: _hsla($name: 'ui', $l: 90);
   &:after{
     content: '';
     display: block;
     width: 100%;
     margin-top: 10px;
-    border-bottom: 5px solid color_hsla($name: 'secondary');
+    border-bottom: 5px solid _hsla($name: 'secondary');
     transform: scale(0);
     transition: ease transform .3s;
   }

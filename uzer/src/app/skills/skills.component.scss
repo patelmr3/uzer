@@ -9,8 +9,8 @@
   border-radius: 3px;
   font-size: 1.5em;
   text-align: center;
-  color: color_hsla($name: 'ui', $l: 60);
-  background-color: color_hsla($name: 'ui', $l: 95);
+  color: _hsla($name: 'ui', $l: 60);
+  background-color: _hsla($name: 'ui', $l: 95);
 }
 
 .skill {
@@ -26,11 +26,11 @@
   .expertise-level{
     width: 40%;
     height: 10px;
-    background-color: color_hsla($name: 'ui', $l: 95);
+    background-color: _hsla($name: 'ui', $l: 95);
 
     .expertise-level-bar{
       height: 10px;
-      background-color: color_hsla($name: 'primary');
+      background-color: _hsla($name: 'primary');
     }
   }
 }
@@ -41,14 +41,47 @@
 }
 
 .add-skill-wrapper{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 500px;
-  margin-top: 10px;
-  padding: 15px;
-  border: 1px solid color_hsla($name: 'ui', $l: 95);
+  position: fixed;
+  top: 20%;
+  left: 0px;
+  right: 0px;
+  width: 80%;
+  min-width: 300px;
+  max-width: 500px;
+  margin: auto;
+  padding: 25px;
+  border: 1px solid _hsla($name: 'ui', $l: 95);
+  border-radius: 5px;
   background-color: #fff;
   box-shadow: 0px 1px 10px rgba(0, 0, 0, .3);
+}
+
+.expertise-level-indicators{
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 0px;
+  font-size: 1.3em;
+  font-weight: 500;
+
+  .expertise-level-val{
+    display: inline-block;
+    padding: 5px;
+    color: _hsla($name: ui, $l: 20);
+    border-radius: 3px;
+    background-color: _hsla($name: ui, $l: 90);
+  }
+
+  .expertise-level-name{
+    display: inline-block;
+    padding: 5px;
+    color: #fff;
+    border-radius: 3px;
+    background-color: _hsla($name: 'primary');
+  }
+}
+
+.action-btns{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
 }

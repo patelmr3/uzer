@@ -12,7 +12,9 @@ export class AppComponent implements OnInit {
   title = 'app';
   showRegistration: Boolean = false;
 
-  constructor(private activatedRoute: ActivatedRoute) { }
+  constructor(
+    private activatedRoute: ActivatedRoute
+  ) { }
 
   ngOnInit() {
     if (window.localStorage) {

@@ -1,6 +1,6 @@
 @import '~scss/mixins';
 header {
-  background-color: color_hsla($name: 'ui', $l: 95);
+  background-color: _hsla($name: 'ui', $l: 95);
   padding: 10px;
 }
 
@@ -15,14 +15,14 @@ nav {
   .logo {
     margin-right: 10px;
     padding: 5px 10px 0px 10px;
-    color: color_hsla($name: 'primary');
+    color: _hsla($name: 'primary');
     outline: none;
   }
   .user-count {
     padding: 0em .4em .18em;
     font-size: 1em;
     font-weight: 500;
-    background-color: color_hsla($name: 'error');
+    background-color: _hsla($name: 'error');
     border-radius: .1em;
   }
 }
@@ -37,9 +37,9 @@ nav {
   margin: 0px 20px 0px 15px;
   border-radius: 5px;
   transition: ease background-color .3s;
-  background-color: color_hsla($name: 'ui', $l: 89);
+  background-color: _hsla($name: 'ui', $l: 89);
   &:hover {
-    background-color: color_hsla($name: 'ui', $l: 80);
+    background-color: _hsla($name: 'ui', $l: 80);
   }
 }
 
@@ -49,7 +49,7 @@ nav {
   cursor: pointer;
   .user-initials {
     position: relative;
-    background-color: color_hsla($name: 'primary', $l: 40);
+    background-color: _hsla($name: 'primary', $l: 40);
     span {
       position: absolute;
       top: 50%;
@@ -60,7 +60,7 @@ nav {
   i {
     display: block;
     padding: 15px 10px 15px 5px;
-    color: color_hsla($name: 'ui', $l: 50);;
+    color: _hsla($name: 'ui', $l: 50);;
   }
 }
 
