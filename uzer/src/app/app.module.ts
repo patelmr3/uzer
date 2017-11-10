@@ -21,7 +21,6 @@ import { UserSingleComponent } from './user-single/user-single.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { SkillsComponent } from './skills/skills.component';
 import { BackdropComponent } from './backdrop/backdrop.component';
-import { BackdropDirective } from './backdrop.directive';
 
 const appRoutes: Routes = [
   {
@@ -56,7 +55,6 @@ const appRoutes: Routes = [
     SpinnerComponent,
     SkillsComponent,
     BackdropComponent,
-    BackdropDirective
   ],
   imports: [
     BrowserModule,

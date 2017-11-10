@@ -24,7 +24,7 @@
   }
 
   &.primary{
-    color: _hsla($name: 'primary');
+    color: $color-primary;
   }
 
   i{

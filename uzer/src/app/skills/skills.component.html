@@ -12,10 +12,11 @@
         <div class="skill-name">{{ skill.skillName }}</div>
         <div class="expertise-level">
           <div 
-          class="expertise-level-bar" 
-          [style.width]="skill.expertiseLevel + '%'">
+            class="expertise-level-bar" 
+            [style.width]="skill.expertiseLevel + '%'">
           </div>
         </div>
+        <div class="expertise-name">{{ skill.epertiseLevel }}</div>        
       </li>
     </ul>
     <div 
@@ -26,17 +27,18 @@
   </section>
 
   <div 
-    [backdrop]="zIndex-1"
-    *ngIf="showAddSkillForm"
     [@fadeIn]
+    class="backdrop"
+    [style.zIndex]="[zIndex-1]"
+    *ngIf="showAddSkillForm"
     (click)="showAddSkillForm = false">
   </div>
 
   <!-- add skill form -->
   <section 
+    [@scale]
     class="add-skill-wrapper"
-    [@scale] 
-    [style.zIndex]="zIndex" 
+    [style.zIndex]="addSkillFormzIndex" 
     *ngIf="showAddSkillForm">
       <form 
         [formGroup]="addSkillForm" 
@@ -46,11 +48,29 @@
           <div class="form-control-group">
             <label for="skill-name">Skill name</label>
             <input 
-              type="text" 
               #skillName
+              type="text" 
+              (focus)="showSuggestedSkills = true"
               id="skill-name" 
               class="form-control" 
-              formControlName="skillName">
+              formControlName="skillName"
+              autocomplete="off"
+              placeholder="Ex. HTML">
+
+            <section 
+              [@scale]
+              class="suggested-skills" 
+              *ngIf="showSuggestedSkills">
+                <ul class="suggested-skill-list">
+                  <li 
+                  class="suggested-skill" 
+                  (click)="selectSuggestion(skill); showSuggestedSkills = false"
+                  *ngFor="let skill of suggestedSkills">
+                    {{ skill }}
+                  </li>
+                </ul>
+            </section>
+
           </div>
 
           <div class="form-control-group expertise-level">
@@ -58,45 +78,23 @@
             <div class="expertise-level-indicators">
               <div class="expertise-level-val">{{ expertiseLevel.value }}%</div>
               <div class="expertise-level-name-wrapper">
-                <span 
-                  [@scale]
+                <div 
                   class="expertise-level-name"
-                  *ngIf="expertiseLevel.value == 0" 
-                  [style.backgroundColor]="'#F44336'">
-                    No skills
-                </span>
-                <span 
-                  [@scale]
-                  class="expertise-level-name"
-                  *ngIf="expertiseLevel.value > 0 && expertiseLevel.value <= 30" 
-                  [style.backgroundColor]="'#E91E63'">
-                    Beginner
-                </span>
-                <span 
-                  [@scale]
-                  class="expertise-level-name"
-                  *ngIf="expertiseLevel.value > 30 && expertiseLevel.value <= 50" 
-                  [style.backgroundColor]="'#9C27B0'">
-                    Intermediate
-                </span>
-                <span 
-                  [@scale]
-                  class="expertise-level-name"
-                  *ngIf="expertiseLevel.value > 50 && expertiseLevel.value <= 80" 
-                  [style.backgroundColor]="'#2196F3'">
-                    Proficiant
-                </span>
-                <span 
-                  [@scale]
-                  class="expertise-level-name"
-                  *ngIf="expertiseLevel.value > 80 && expertiseLevel.value <= 100" 
-                  [style.backgroundColor]="'#4CAF50'">
-                    Expert
-                </span>
+                  [style.color]="currentExpertiseLevel.color"
+                  [style.borderColor]="currentExpertiseLevel.color">
+                    {{ currentExpertiseLevel.name }}
+                    <div 
+                      class="sub-level" 
+                      [style.width]="currentExpertiseLevel.subLevel + '%'"
+                      [style.backgroundColor]="currentExpertiseLevel.color">
+                    </div>
+                </div>
+                
               </div>
             </div>
             <input 
               #expertiseLevel
+              (input)="onExpertiseLevelChange(expertiseLevel.value)"
               type="range" 
               id="expertise-level" 
               class="form-control" 
@@ -105,12 +103,14 @@
 
           <div class="action-btns">
             <button 
+            pushDownBtn
             type="button"
             (click)="closeAddSkill()" 
             class="btn">
                 Cancel
             </button>
             <button 
+              pushDownBtn
               type="submit"
               class="btn btn-primary"
               [disabled]="!skillName.value.length">

@@ -1,33 +1,21 @@
 @import '~scss/mixins';
-
-.user-list{
+.user-list {
   display: flex;
   flex-wrap: wrap;
 }
 
-.user{
+.user {
   display: flex;
   flex-direction: column;
   width: 31.33%;
   margin: 1%;
-  padding: 1.1em;
-  border-radius: .3em;
-  background-color: _hsla($name: 'ui', $l: 98);
-  &:hover{
-    background-color: _hsla($name: 'ui', $l: 93);
-    cursor: pointer;
-  }
+  @extend %card;
 }
 
-.user-name{
+.user-name {
   display: flex;
   flex-direction: row;
-
-  .user-initials{
-    //@extend .user-initials;
-  }
-
-  .user-full-name{
+  .user-full-name {
     margin-left: 1em;
     align-self: center;
     font-size: 1.3em;
@@ -35,16 +23,11 @@
   }
 }
 
-.user-job-position{
-  //@extend .user-job-position;
-}
-
 @media all and (max-width: 768px) {
-  .user-list{
+  .user-list {
     flex-direction: column;
   }
-
-  .user{
+  .user {
     width: 100%;
   }
 }

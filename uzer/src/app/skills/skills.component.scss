@@ -9,39 +9,36 @@
   border-radius: 3px;
   font-size: 1.5em;
   text-align: center;
-  color: _hsla($name: 'ui', $l: 60);
-  background-color: _hsla($name: 'ui', $l: 95);
+  color: _lighten($color-ui, 60);
+  background-color: lighten($color-ui, 95);
 }
 
 .skill {
   display: flex;
   justify-content: space-between;
   margin: 1em 0em;
-
-  .skill-name{
+  .skill-name {
     font-size: 1.3em;
     font-weight: 700;
   }
-
-  .expertise-level{
+  .expertise-level {
     width: 40%;
     height: 10px;
-    background-color: _hsla($name: 'ui', $l: 95);
-
-    .expertise-level-bar{
+    background-color: lighten($color-ui, 95);
+    .expertise-level-bar {
       height: 10px;
-      background-color: _hsla($name: 'primary');
+      background-color: $color-primary;
     }
   }
 }
 
-.add-skill-btn{
+.add-skill-btn {
   margin: 10px 0px;
   padding: .5em;
 }
 
-.add-skill-wrapper{
-  position: fixed;
+.add-skill-wrapper {
+  position: absolute;
   top: 20%;
   left: 0px;
   right: 0px;
@@ -50,38 +47,88 @@
   max-width: 500px;
   margin: auto;
   padding: 25px;
-  border: 1px solid _hsla($name: 'ui', $l: 95);
+  border: 1px solid lighten($color-ui, 95);
   border-radius: 5px;
   background-color: #fff;
   box-shadow: 0px 1px 10px rgba(0, 0, 0, .3);
 }
 
-.expertise-level-indicators{
+#skill-name {
+  font-weight: 600;
+  color: $color-ui;
+  border: none;
+  box-shadow: 0px 1px 5px rgba(0,0,0,.2);
+}
+
+//suggested skills
+.suggested-skills {
+  overflow: auto;
+  max-height: 200px;
+  margin: 1em 0em;
+  padding: .8em;
+  border-radius: 3px;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, .2);
+
+  .suggested-skill {
+    padding: .8em;
+    font-size: 1em;
+    font-weight: 500;
+    border-radius: 3px;
+    border-bottom: 1px solid lighten($color-ui, 48);
+
+    &:last-child {
+      border: 0px;
+    }
+
+    &:hover {
+      color: #fff;
+      background-color: darken($color-ui, 5);
+      cursor: pointer;
+    }
+  }
+}
+
+//expertise level indicators
+.expertise-level-indicators {
   display: flex;
   justify-content: space-between;
-  margin: 15px 0px;
-  font-size: 1.3em;
+  margin: 1em 0em;
+  font-size: .9em;
   font-weight: 500;
+  text-transform: uppercase;
 
-  .expertise-level-val{
+  %level {
     display: inline-block;
-    padding: 5px;
-    color: _hsla($name: ui, $l: 20);
+    padding: .6em;
     border-radius: 3px;
-    background-color: _hsla($name: ui, $l: 90);
   }
 
-  .expertise-level-name{
-    display: inline-block;
-    padding: 5px;
-    color: #fff;
-    border-radius: 3px;
-    background-color: _hsla($name: 'primary');
+  .expertise-level-val {
+    @extend %level;
+    color: $color-ui;
+    background-color: lighten($color-ui, 46);
+  }
+
+  .expertise-level-name {
+    @extend %level;
+    position: relative;
+    border: 1px solid;
+
+    .sub-level{
+      opacity: .2;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      height: 100%;
+      width: 100%;
+    }
   }
 }
 
-.action-btns{
+.action-btns {
   display: flex;
   justify-content: space-between;
-  margin-top: 15px;
+  margin-top: 1em;
 }
+
+

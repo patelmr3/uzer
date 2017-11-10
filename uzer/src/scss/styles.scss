@@ -5,14 +5,14 @@
 @import 'range_input';
 
 html {
-  font-family: $fontPrimary;
-  font-size: 12px;
+  font-family: $font-primary;
+  font-size: 16px;
 }
 
 body {
   overflow-x: hidden;
-  color: _hsla($name: 'ui', $l: 30);
-  background-color: _hsla($name: 'ui', $l: 98);
+  color: darken($color-ui, 10);
+  background-color: lighten($color-ui, 50);
 }
 
 .container {
@@ -38,66 +38,51 @@ body {
   left: 0px;
   width: 100%;
   height: 100%;
-  background-color: rgba(0,0,0,.8);
+  background-color: rgba(0,0,0,.5);
 }
 
 .btn {
   display: inline-block;
-  padding: 1.3em .9em;
-  font-family: $fontPrimary;
-  font-size: 1.2em;
-  font-weight: 800;
+  padding: 1.2em .9em;
+  font-family: $font-primary;
+  font-size: 1em;
+  font-weight: 500;
   line-height: 0;
   border: 2px solid;
   border-radius: 3px;
   border-color: transparent;
-  color: _hsla($name: 'ui', $l: 30);
-  background-color: _hsla($name: 'ui', $l: 95);
+  color: $color-ui;
+  background-color: lighten($color-ui, 50);
   cursor: pointer;
   outline: none;
+  transition: ease background-color .1s;
   &:hover {
-    background-color: _hsla($name: 'ui', $l: 90);
+    background-color: lighten($color-ui, 45);
   }
   &.btn-primary {
     color: #fff;
-    background-color: _hsla($name: 'primary');
+    background-color: $color-primary;
     &:hover {
-      background-color: _hsla($name: 'primary', $l: 50);
-    }
-  }
-  &.btn-primary-light {
-    color: #fff;
-    background-color: _hsla($name: 'primary', $l: 60);
-    transition: ease background-color .1s;
-    &:hover {
-      background-color: _hsla($name: 'primary', $l: 40);
-    }
-  }
-  &.btn-primary-lighter-border {
-    color: _hsla($name: 'primary');
-    background-color: _hsla($name: 'primary', $l: 60);
-    border-color: _hsla($name: 'primary');
-    &:hover {
-      color: #fff;
-      background-color: _hsla($name: 'primary', $l: 40);
+      background-color: darken($color-primary, 10);
     }
   }
   &.btn-secondary {
     color: #fff;
-    background-color: _hsla($name: 'secondary');
+    background-color: $color-secondary;
     &:hover {
-      background-color: _hsla($name: 'secondary', $l: 30);
+      background-color: darken($color-secondary, 5);
     }
   }
   &.btn-wide {
     width: 100%;
-    padding: 1.6em;
+    padding: 1.4em;
   }
   &:disabled {
     color: #fff;
-    background-color: _hsla($name: 'ui', $l: 90);
+    border: none;
+    background-color: lighten($color-ui, 40);
     &:hover {
-      background-color: _hsla($name: 'ui', $l: 90);
+      background-color: lighten($color-ui, 40);
       cursor: default;
     }
   }
@@ -109,22 +94,22 @@ body {
 
 label {
   display: block;
-  margin-bottom: .5em;
-  font-size: 1.3em;
-  font-weight: 500;
-  color: _hsla($name: 'ui', $l: 50)
+  margin-bottom: .8em;
+  font-size: 1em;
+  font-weight: 700;
+  color: darken($color-ui, 10);
 }
 
 .form-control-group {
-  margin-bottom: 25px;
+  margin-bottom: 1.2em;
 }
 
 .form-control {
   display: block;
   width: 100%;
-  padding: .9em;
-  font-size: 1.2em;
-  color: _hsla($name: 'ui', $l: 20);
+  padding: .8em;
+  font-size: 1em;
+  color: $color-ui;
   border: 2px solid;
   border-radius: 3px;
   border-color: #eee;
@@ -132,77 +117,76 @@ label {
     opacity: .5;
   }
   &.primary {
-    border-color: _hsla($name: 'ui', $l: 90);
+    border-color: lighten($color-ui, 45);
   }
   &:focus {
     outline: none;
-    border-color: _hsla($name: 'ui', $l: 80);
+    border-color: lighten($color-ui, 10);
   }
 }
 
-input[type=range] {
-  -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
-  width: 100%; /* Specific width is required for Firefox. */
-  background: transparent; /* Otherwise white in Chrome */
-}
+// input[type=range] {
+//   -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+//   width: 100%; /* Specific width is required for Firefox. */
+//   background: transparent; /* Otherwise white in Chrome */
+// }
 
-input[type=range]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-}
+// input[type=range]::-webkit-slider-thumb {
+//   -webkit-appearance: none;
+// }
 
-input[type=range]:focus {
-  outline: none; /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
-}
+// input[type=range]:focus {
+//   outline: none; /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
+// }
 
-input[type=range]::-ms-track {
-  width: 100%;
-  cursor: pointer;
+// input[type=range]::-ms-track {
+//   width: 100%;
+//   cursor: pointer;
 
-  /* Hides the slider so custom styles can be added */
-  background: transparent; 
-  border-color: transparent;
-  color: transparent;
-}
+//   /* Hides the slider so custom styles can be added */
+//   background: transparent; 
+//   border-color: transparent;
+//   color: transparent;
+// }
 
 .error-message {
-  margin-top: 5px;
-  font-family: $fontSecondary;
-  color: _hsla($name: 'error');
+  margin-top: .7;
+  font-family: $font-secondary;
+  color: $color-red;
 }
 
 .user-initials {
-  width: 3em;
-  height: 3em;
-  padding-top: 1em;
-  font-size: 1.2em;
+  width: 2.5em;
+  height: 2.5em;
+  padding-top: .8em;
+  font-size: 1em;
   font-weight: 800;
   text-align: center;
-  border-radius: .2em;
+  border-radius: 3px;
   color: #fff;
-  background-color: _hsla($name: 'secondary');
+  background-color: $color-secondary;
 }
 
 .user-job-position {
-  padding-top: .5em;
-  font-family: $fontSecondary;
-  color: _hsla($name: 'ui', $l: 60);
+  padding-top: .4em;
+  font-family: $font-secondary;
   vertical-align: middle;
   &:before {
     display: inline-block;
     content: ' ';
-    margin-right: 5px;
-    width: 8px;
-    height: 8px;
+    margin-right: .4em;
+    width: .5em;
+    height: .5em;
     border-radius: 50%;
-    background-color: _hsla($name: 'secondary');
+    background-color: $color-secondary;
   }
 }
 
 .aside {
   z-index: 102;
   position: absolute;
-  right: 0px;
+  right: 0;
   width: 400px;
-  padding: 30px 30px;
-  background-color: _hsla($name: 'ui', $l: 95);
+  padding: 2em;
+  background-color: lighten($color-ui, 95);
 }

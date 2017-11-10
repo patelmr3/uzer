@@ -13,8 +13,8 @@
     position: absolute;
     left: 30px;
     top: 15px;
-    padding: .5em .8em;
-    font-size: 2em;
+    padding: .3em .6em;
+    font-size: 1.5em;
   }
 }
 
@@ -23,13 +23,13 @@
 
   .user-profile-content-left{
     width: 20%;
-    padding: 30px;
-    border-right: 1px solid _hsla($name: 'ui', $l: 96);
+    padding: 2em;
+    border-right: 1px solid lighten($color: $color-ui, $amount: 95);
   }
 
   .user-profile-content-main{
     flex-grow: 1;
-    padding: 30px;
+    padding: 2em;
   }
 }
 
@@ -38,12 +38,8 @@
 }
 
 .user-profile-name{
-  font-size: 2em;
+  font-size: 1.5em;
   font-weight: 700;
-}
-
-.user-profile-job-position{
-  // @extend .user-job-position;
 }
 
 .user-profile-cards{
@@ -56,8 +52,5 @@
 
 .user-profile-card{ 
   margin: 1%;
-  padding: 10px 30px;
-  border-radius: 3px;
-  background-color: #fff;
-  border: 1px solid _hsla($name: 'ui', $l: 93);
+  @extend %card;
 }

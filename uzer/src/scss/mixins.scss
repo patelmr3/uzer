@@ -1,29 +1,17 @@
-$fontPrimary: 'Roboto', sans-serif;
-$fontSecondary: Arial, "Helvetica Neue", Helvetica, sans-serif;
+//colors
+$color-primary: #4051b5;
+$color-secondary: #00bda4;
+$color-ui: #607d8b;
+$color-red: #f44034;
 
-@function _hsla($name: 'primary', $l:-1, $a: 1) {
-  @if ($name=='primary') {
-    @if($l==-1) {
-      $l: 48;
-    }
-    @return hsla(231, 48, $l, $a);
-  }
-  @else if ($name=='secondary') {
-    @if($l==-1) {
-      $l: 37;
-    }
-    @return hsla(172, 100, $l, $a);
-  }
-  @else if ($name=='ui') {
-    @if($l==-1) {
-      $l: 46;
-    }
-    @return hsla(200, 18, $l, $a);
-  }
-  @else if ($name=='error') {
-    @if($l==-1) {
-      $l: 58;
-    }
-    @return hsla(4, 90, $l, $a);
-  }
+//fonts
+$font-primary: 'Roboto', sans-serif;
+$font-secondary: Arial, "Helvetica Neue", Helvetica, sans-serif;
+
+%card {
+  padding: 1.1em;
+  border-radius: .3em;
+  background-color: #fff;
+  box-shadow: 0px 1px 3px rgba(0,0,0,.2);
+  transition: ease box-shadow .2s;
 }
