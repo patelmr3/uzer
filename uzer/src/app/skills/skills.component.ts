@@ -4,10 +4,7 @@ import {
   OnDestroy
 } from '@angular/core';
 
-import {
-  AppEventsService
-} from '../services/app-events-service/app-events.service';
-
+import { AppEventsService } from '../services/app-events-service/app-events.service';
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({
@@ -15,37 +12,36 @@ import { Subscription } from 'rxjs/Subscription';
   templateUrl: './skills.component.html',
   styleUrls: ['./skills.component.scss']
 })
+
 export class SkillsComponent implements OnInit, OnDestroy {
   
-  showAddSkill: Boolean = false;
-  skills;
-  skillAddedEventSubscription: Subscription;
-  skillUpdatedEventSubscription: Subscription;
+  skills = [];
+  skillAddedEventSubscription: Subscription; //watch for new skill
+  skillUpdatedEventSubscription: Subscription; //watch for skill update
   slectedSkill; //skill to be selected for edit or delete
 
   constructor(private appEventService: AppEventsService) {}
 
   ngOnInit() {
+    //subscrive to event: skill added
     this.skillAddedEventSubscription = this.appEventService.skillAddedEvent
       .subscribe((skill) => {
-        if (this.skills && this.skills.length) {
-          this.skills.push(skill);
-        } else {
-          this.skills = [skill];
-        }
+        this.skills.push(skill); //push new skill to skills array
       });
 
+    //subscribe to event: skill updated
     this.skillUpdatedEventSubscription = this.appEventService.skillUpdatedEvent
       .subscribe((skill) => {
         this.skills[skill.index].expertiseLevel = skill.expertiseLevel;
       });
   }
 
-  openAddSkill() {
-    this.showAddSkill = true;
+  deleteSkill(index) {
+    this.skills.splice(index, 1);
   }
 
   ngOnDestroy() {
+    //unsubscribe to all the events
     this.skillAddedEventSubscription.unsubscribe();
     this.skillUpdatedEventSubscription.unsubscribe();
   }

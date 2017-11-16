@@ -23,8 +23,10 @@
         </div>    
 
         <div class="skill-controls">
-          <div class="skill-controls-delete btn">
-            <i class="fa fa-trash"></i>
+          <div 
+            class="skill-controls-delete btn"
+            (click)="deleteSkill(index)">
+              <i class="fa fa-trash"></i>
           </div>
           <div 
             class="skill-controls-update btn"
@@ -41,7 +43,7 @@
     </ul>
 
     <div 
-      *ngIf="!skills" 
+      *ngIf="!skills.length" 
       class="no-skills-message">
         You have no skills
     </div>

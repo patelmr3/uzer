@@ -30,7 +30,7 @@ export class ExpertiseLevelComponent implements OnInit {
     {name: 'Beginner', color: '#E91E63'},
     {name: 'Intermediate', color: '#9C27B0'},
     {name: 'Proficiant', color: '#2196F3'},
-    {name: 'Expert', color: '#4CAF50'},
+    {name: 'Expert', color: '#4CAF50'}
   ];
 
   ngOnInit() {
