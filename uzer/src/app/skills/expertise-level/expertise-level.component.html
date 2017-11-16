@@ -1,0 +1,16 @@
+<div class="form-control-group expertise-level" [formGroup]="expertiseLevelForm">
+  <label for="expertise-level">Expertise level</label>
+  <div class="expertise-levels">
+    <div class="expertise-level-val">{{ expertiseLevel.value }}%</div>
+    <expertise-level-indicator 
+      [expertiseLevel]="currentExpertiseLevel">
+    </expertise-level-indicator>
+  </div>
+  <input 
+    #expertiseLevel
+    (input)="onExpertiseLevelChange(expertiseLevel.value)"
+    type="range" 
+    id="expertise-level" 
+    class="form-control" 
+    formControlName="expertiseLevel">
+</div>

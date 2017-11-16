@@ -2,11 +2,17 @@ import { Injectable, EventEmitter } from '@angular/core';
 
 @Injectable()
 export class AppEventsService {
-  backdropEvent = new EventEmitter;
+
+  skillAddedEvent = new EventEmitter();
+  skillUpdatedEvent = new EventEmitter();
 
   constructor() { }
 
-  toggleBackdrop(data) {
-    this.backdropEvent.emit(data)
+  skillAdded(skill) {
+    this.skillAddedEvent.emit(skill);
+  }
+
+  skillUpdated(skill) {
+    this.skillUpdatedEvent.emit(skill);
   }
 }

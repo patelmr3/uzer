@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
+import { NgModule, /*NO_ERRORS_SCHEMA*/ } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -20,7 +20,11 @@ import { AppEventsService } from './services/app-events-service/app-events.servi
 import { UserSingleComponent } from './user-single/user-single.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { SkillsComponent } from './skills/skills.component';
-import { BackdropComponent } from './backdrop/backdrop.component';
+import { AddSkillComponent } from './skills/add-skill/add-skill.component';
+import { UpdateSkillComponent } from './skills/update-skill/update-skill.component';
+import { ModalComponent } from './modal/modal.component';
+import { ExpertiseLevelIndicatorComponent } from './skills/expertise-level-indicator/expertise-level-indicator.component';
+import { ExpertiseLevelComponent } from './skills/expertise-level/expertise-level.component';
 
 const appRoutes: Routes = [
   {
@@ -54,7 +58,11 @@ const appRoutes: Routes = [
     UserSingleComponent,
     SpinnerComponent,
     SkillsComponent,
-    BackdropComponent,
+    AddSkillComponent,
+    UpdateSkillComponent,
+    ModalComponent,
+    ExpertiseLevelIndicatorComponent,
+    ExpertiseLevelComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,6 +72,7 @@ const appRoutes: Routes = [
     HttpClientModule
   ],
   providers: [UsersService, AppEventsService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  // schemas: [NO_ERRORS_SCHEMA]
 })
 export class AppModule { }

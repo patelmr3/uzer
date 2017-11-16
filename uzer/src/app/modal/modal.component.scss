@@ -1,0 +1,31 @@
+.modal-target {
+  z-index: 105;
+  overflow: auto;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+}
+
+.modal-body {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  padding: 25px;
+  transform: translate(-50%, -50%);
+  border-radius: 3px;
+  background-color: #fff;
+}
+
+.modal-backdrop {
+  z-index: -1;
+  opacity: .3;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+}

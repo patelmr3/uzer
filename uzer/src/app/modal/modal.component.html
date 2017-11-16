@@ -1,0 +1,13 @@
+<section class="modal-wrapper">
+
+  <section class="modal-target">
+
+    <article class="modal-body">
+      <ng-content select="[modal-body]"></ng-content>
+    </article>
+
+    <div class="modal-backdrop" (click)="closeModal()"></div>
+
+  </section>
+
+</section>

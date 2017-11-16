@@ -1,129 +1,78 @@
 <section class="skills-wrapper">
+  
   <section>
     <header class="section-header">
       Skills
     </header>
   </section>
 
-  <!-- skill list -->
   <section class="skill-list-wrapper">
+    
     <ul class="skill-list">
-      <li class="skill" *ngFor="let skill of skills">
-        <div class="skill-name">{{ skill.skillName }}</div>
+      
+      <li class="skill" *ngFor="let skill of skills; let index = index">
+        
+        <div class="skill-name">
+          {{ skill.skillName }}
+        </div>
+
         <div class="expertise-level">
+          <expertise-level-indicator 
+            [expertiseLevel]="skill.expertiseLevel">
+          </expertise-level-indicator>
+        </div>    
+
+        <div class="skill-controls">
+          <div class="skill-controls-delete btn">
+            <i class="fa fa-trash"></i>
+          </div>
           <div 
-            class="expertise-level-bar" 
-            [style.width]="skill.expertiseLevel + '%'">
+            class="skill-controls-update btn"
+            (click)="
+              updateSkillModalVisible = !updateSkillModalVisible;
+              selectedSkill = skill;
+              selectedSkill['index'] = index">
+              <i class="fa fa-pencil"></i>
           </div>
         </div>
-        <div class="expertise-name">{{ skill.epertiseLevel }}</div>        
+
       </li>
+
     </ul>
+
     <div 
       *ngIf="!skills" 
       class="no-skills-message">
         You have no skills
     </div>
+
+    <button 
+      class="btn btn-secondary"
+      (click)="addSkillModalVisible = !addSkillModalVisible">
+        Add
+    </button>
+
   </section>
 
-  <div 
-    [@fadeIn]
-    class="backdrop"
-    [style.zIndex]="[zIndex-1]"
-    *ngIf="showAddSkillForm"
-    (click)="showAddSkillForm = false">
-  </div>
+  <modal 
+    *ngIf="addSkillModalVisible" 
+    [(modalVisible)]="addSkillModalVisible">
+      <div modal-body>
+        <add-skill 
+          [(addSkillModalVisible)]="addSkillModalVisible">
+        </add-skill>
+      </div>
+  </modal>
 
-  <!-- add skill form -->
-  <section 
-    [@scale]
-    class="add-skill-wrapper"
-    [style.zIndex]="addSkillFormzIndex" 
-    *ngIf="showAddSkillForm">
-      <form 
-        [formGroup]="addSkillForm" 
-        id="add-skill-form" 
-        (submit)="addSkill(addSkillForm)">
+  <modal 
+    *ngIf="updateSkillModalVisible" 
+    [(modalVisible)]="updateSkillModalVisible">
+      <div modal-body>
+        <update-skill 
+          [(updateSkillModalVisible)]="updateSkillModalVisible"
+          [skill]="selectedSkill">
+        </update-skill>
+      </div>
+  </modal>
 
-          <div class="form-control-group">
-            <label for="skill-name">Skill name</label>
-            <input 
-              #skillName
-              type="text" 
-              (focus)="showSuggestedSkills = true"
-              id="skill-name" 
-              class="form-control" 
-              formControlName="skillName"
-              autocomplete="off"
-              placeholder="Ex. HTML">
-
-            <section 
-              [@scale]
-              class="suggested-skills" 
-              *ngIf="showSuggestedSkills">
-                <ul class="suggested-skill-list">
-                  <li 
-                  class="suggested-skill" 
-                  (click)="selectSuggestion(skill); showSuggestedSkills = false"
-                  *ngFor="let skill of suggestedSkills">
-                    {{ skill }}
-                  </li>
-                </ul>
-            </section>
-
-          </div>
-
-          <div class="form-control-group expertise-level">
-            <label for="expertise-level">Expertise level</label>
-            <div class="expertise-level-indicators">
-              <div class="expertise-level-val">{{ expertiseLevel.value }}%</div>
-              <div class="expertise-level-name-wrapper">
-                <div 
-                  class="expertise-level-name"
-                  [style.color]="currentExpertiseLevel.color"
-                  [style.borderColor]="currentExpertiseLevel.color">
-                    {{ currentExpertiseLevel.name }}
-                    <div 
-                      class="sub-level" 
-                      [style.width]="currentExpertiseLevel.subLevel + '%'"
-                      [style.backgroundColor]="currentExpertiseLevel.color">
-                    </div>
-                </div>
-                
-              </div>
-            </div>
-            <input 
-              #expertiseLevel
-              (input)="onExpertiseLevelChange(expertiseLevel.value)"
-              type="range" 
-              id="expertise-level" 
-              class="form-control" 
-              formControlName="expertiseLevel">
-          </div>
-
-          <div class="action-btns">
-            <button 
-            pushDownBtn
-            type="button"
-            (click)="closeAddSkill()" 
-            class="btn">
-                Cancel
-            </button>
-            <button 
-              pushDownBtn
-              type="submit"
-              class="btn btn-primary"
-              [disabled]="!skillName.value.length">
-                Save
-            </button>
-          </div>
-      </form>
-  </section>
-
-  <button 
-    class="btn btn-secondary add-skill-btn" 
-    [disabled]="showAddSkillForm" 
-    (click)="openAddSkill()">
-      <i class="fa fa-plus"></i> Add
-  </button>
 </section>

@@ -54,6 +54,19 @@ export const scale: AnimationEntryMetadata =
     transition(':enter', animate('.2s ease-in-out'))
   ]);
 
+export const scaleCenter: AnimationEntryMetadata = 
+  trigger('scaleCenter', [
+    state('void', style({
+      opacity: 0,
+      transform: 'scale(.9)'
+    })),
+    state('*', style({
+      opacity: 1,
+      transform: 'scale(1)'
+    })),
+    transition(':enter', animate('.2s ease-in-out'))
+  ]);
+
 export const fadeIn: AnimationEntryMetadata = 
   trigger('fadeIn', [
     state('void', style({

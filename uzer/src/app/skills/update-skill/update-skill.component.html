@@ -1,0 +1,37 @@
+<article class="add-skill-wrapper">
+  <form 
+    [formGroup]="updateSkillForm" 
+    id="update-skill-form" 
+    (submit)="updateSkill(updateSkillForm)">
+
+      <div class="form-control-group">
+        
+        <label for="skill-name">Skill name</label>
+        
+        <div>
+          {{ skill.skillName }}
+        </div>
+
+      </div>
+
+      <expertise-level 
+        [(currentExpertiseLevel)]="currentExpertiseLevel">
+      </expertise-level>
+
+      <div class="action-btns">
+        <button 
+          pushDownBtn
+          type="button"
+          (click)="closeUpdateSkill()" 
+          class="btn">
+            Cancel
+        </button>
+        <button 
+          pushDownBtn
+          type="submit"
+          class="btn btn-primary">
+            Save
+        </button>
+      </div>
+  </form>
+</article>

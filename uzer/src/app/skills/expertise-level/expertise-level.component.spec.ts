@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BackdropComponent } from './backdrop.component';
+import { ExpertiseLevelComponent } from './expertise-level.component';
 
-describe('BackdropComponent', () => {
-  let component: BackdropComponent;
-  let fixture: ComponentFixture<BackdropComponent>;
+describe('ExpertiseLevelComponent', () => {
+  let component: ExpertiseLevelComponent;
+  let fixture: ComponentFixture<ExpertiseLevelComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BackdropComponent ]
+      declarations: [ ExpertiseLevelComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BackdropComponent);
+    fixture = TestBed.createComponent(ExpertiseLevelComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

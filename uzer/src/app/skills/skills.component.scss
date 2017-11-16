@@ -1,4 +1,5 @@
 @import '~scss/mixins';
+
 .section-header {
   margin: 1em 0em 1.5em;
   font-size: 1.5em;
@@ -16,19 +17,12 @@
 .skill {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin: 1em 0em;
+
   .skill-name {
-    font-size: 1.3em;
+    font-size: 1em;
     font-weight: 700;
-  }
-  .expertise-level {
-    width: 40%;
-    height: 10px;
-    background-color: lighten($color-ui, 95);
-    .expertise-level-bar {
-      height: 10px;
-      background-color: $color-primary;
-    }
   }
 }
 
@@ -37,98 +31,14 @@
   padding: .5em;
 }
 
-.add-skill-wrapper {
-  position: absolute;
-  top: 20%;
-  left: 0px;
-  right: 0px;
-  width: 80%;
-  min-width: 300px;
-  max-width: 500px;
-  margin: auto;
-  padding: 25px;
-  border: 1px solid lighten($color-ui, 95);
-  border-radius: 5px;
-  background-color: #fff;
-  box-shadow: 0px 1px 10px rgba(0, 0, 0, .3);
-}
-
-#skill-name {
-  font-weight: 600;
-  color: $color-ui;
-  border: none;
-  box-shadow: 0px 1px 5px rgba(0,0,0,.2);
-}
-
-//suggested skills
-.suggested-skills {
-  overflow: auto;
-  max-height: 200px;
-  margin: 1em 0em;
-  padding: .8em;
-  border-radius: 3px;
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, .2);
-
-  .suggested-skill {
-    padding: .8em;
-    font-size: 1em;
-    font-weight: 500;
-    border-radius: 3px;
-    border-bottom: 1px solid lighten($color-ui, 48);
-
-    &:last-child {
-      border: 0px;
-    }
-
-    &:hover {
-      color: #fff;
-      background-color: darken($color-ui, 5);
-      cursor: pointer;
-    }
-  }
-}
-
-//expertise level indicators
-.expertise-level-indicators {
+.skill-controls{
   display: flex;
-  justify-content: space-between;
-  margin: 1em 0em;
-  font-size: .9em;
-  font-weight: 500;
-  text-transform: uppercase;
 
-  %level {
-    display: inline-block;
-    padding: .6em;
-    border-radius: 3px;
-  }
-
-  .expertise-level-val {
-    @extend %level;
-    color: $color-ui;
-    background-color: lighten($color-ui, 46);
-  }
-
-  .expertise-level-name {
-    @extend %level;
-    position: relative;
-    border: 1px solid;
-
-    .sub-level{
-      opacity: .2;
-      position: absolute;
-      top: 0px;
-      left: 0px;
-      height: 100%;
-      width: 100%;
-    }
+  .btn{
+    padding: .3em;
+    margin-left: 5px;
   }
 }
 
-.action-btns {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 1em;
-}
 
 
