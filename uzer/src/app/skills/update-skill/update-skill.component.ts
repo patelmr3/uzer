@@ -16,8 +16,8 @@ import {
   FormControl } from '@angular/forms';
 
 import {
-  AppEventsService
-} from '../../services/app-events-service/app-events.service';
+  SkillsService
+} from '../../services/skills-service/skills.service';
 
 @Component({
   selector: 'update-skill',
@@ -27,7 +27,7 @@ import {
 })
 export class UpdateSkillComponent implements OnInit {
 
-  constructor(private appEventsService: AppEventsService) { }
+  constructor(private skillsService: SkillsService) { }
 
   updateSkillForm;
   addSkillFormzIndex: Number = 105;
@@ -50,7 +50,7 @@ export class UpdateSkillComponent implements OnInit {
   updateSkill(formData) { 
     this.skill.expertiseLevel = this.currentExpertiseLevel;
     //emit event when new skill is added
-    this.appEventsService.skillUpdated(this.skill);
+    this.skillsService.update(this.skill);
     this.closeUpdateSkill();
   }
 

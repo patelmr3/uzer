@@ -16,7 +16,7 @@ import { UsersComponent } from './users/users.component';
 import { InitialsPipe } from './users/initials.pipe';
 
 import { UsersService } from './users/users.service';
-import { AppEventsService } from './services/app-events-service/app-events.service';
+import { SkillsService } from './services/skills-service/skills.service';
 import { UserSingleComponent } from './user-single/user-single.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { SkillsComponent } from './skills/skills.component';
@@ -71,7 +71,7 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [UsersService, AppEventsService],
+  providers: [UsersService, SkillsService],
   bootstrap: [AppComponent],
   // schemas: [NO_ERRORS_SCHEMA]
 })

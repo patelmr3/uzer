@@ -4,7 +4,7 @@ import {
   OnDestroy
 } from '@angular/core';
 
-import { AppEventsService } from '../services/app-events-service/app-events.service';
+import { SkillsService } from '../services/skills-service/skills.service';
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({
@@ -20,17 +20,17 @@ export class SkillsComponent implements OnInit, OnDestroy {
   skillUpdatedEventSubscription: Subscription; //watch for skill update
   slectedSkill; //skill to be selected for edit or delete
 
-  constructor(private appEventService: AppEventsService) {}
+  constructor(private skillsService: SkillsService) {}
 
   ngOnInit() {
     //subscrive to event: skill added
-    this.skillAddedEventSubscription = this.appEventService.skillAddedEvent
+    this.skillAddedEventSubscription = this.skillsService.skillAddedEvent
       .subscribe((skill) => {
         this.skills.push(skill); //push new skill to skills array
       });
 
     //subscribe to event: skill updated
-    this.skillUpdatedEventSubscription = this.appEventService.skillUpdatedEvent
+    this.skillUpdatedEventSubscription = this.skillsService.skillUpdatedEvent
       .subscribe((skill) => {
         this.skills[skill.index].expertiseLevel = skill.expertiseLevel;
       });

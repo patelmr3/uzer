@@ -1,18 +1,20 @@
 import { Injectable, EventEmitter } from '@angular/core';
 
 @Injectable()
-export class AppEventsService {
+export class SkillsService {
 
   skillAddedEvent = new EventEmitter();
   skillUpdatedEvent = new EventEmitter();
 
   constructor() { }
 
-  skillAdded(skill) {
+  add(skill) {
+
+    
     this.skillAddedEvent.emit(skill);
   }
 
-  skillUpdated(skill) {
+  update(skill) {
     this.skillUpdatedEvent.emit(skill);
   }
 }
