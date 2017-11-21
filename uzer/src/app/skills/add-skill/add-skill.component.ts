@@ -15,9 +15,8 @@ import {
   FormGroup, 
   FormControl } from '@angular/forms';
 
-import {
-  SkillsService
-} from '../../services/skills-service/skills.service';
+import { SkillsService } from '../../services/skills-service/skills.service';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'add-skill',
@@ -33,6 +32,9 @@ export class AddSkillComponent implements OnInit {
   showSuggestedSkills: Boolean;
   addSkillFormzIndex: Number = 105;
   currentExpertiseLevel = {};
+
+  addSkillSubscription: Subscription;
+  updateSkillSubscription: Subscription;
 
   @Input() addSkillModalVisible;
   @Output() addSkillModalVisibleChange = new EventEmitter();
@@ -63,18 +65,22 @@ export class AddSkillComponent implements OnInit {
   }
 
   addSkill(formData) {
-
     let fc = formData.controls;
     let newSkill = {
       skillName: fc.skillName.value,
       expertiseLevel: this.currentExpertiseLevel
     }
 
-    console.log(newSkill);
-    //emit event when new skill is added
-    this.skillsService.add(newSkill);
-    this.closeAddSkill();
-
+    this.addSkillSubscription = this.skillsService.add(newSkill)
+    .subscribe((data) => {
+      console.log(data);
+      if (data['success']) {
+        this.skillsService.skillAddedEvent.emit(newSkill); //emit an event when new skill is edded
+        this.closeAddSkill();
+      } else {
+        console.log('skill exists');
+      }
+    });
   }
 
   closeAddSkill() {
@@ -82,5 +88,6 @@ export class AddSkillComponent implements OnInit {
     this.showSuggestedSkills = false; //hide suggested skills
     this.addSkillModalVisible = false; //hide modal
     this.addSkillModalVisibleChange.emit(this.addSkillModalVisible); //ask modal to close
+    this.addSkillSubscription.unsubscribe();
   }
 }

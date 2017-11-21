@@ -1,56 +1,57 @@
 <article class="add-skill-wrapper">
   <form 
-    [formGroup]="addSkillForm" 
-    id="add-skill-form" 
-    (submit)="addSkill(addSkillForm)">
+  [formGroup]="addSkillForm" 
+  id="add-skill-form" 
+  (submit)="addSkill(addSkillForm)" 
+  novalidate>
 
-      <div class="form-control-group">
-        <label for="skill-name">Skill name</label>
-        <input 
-          #skillName
-          type="text" 
-          (focus)="showSuggestedSkills = true"
-          id="skill-name" 
-          class="form-control" 
-          formControlName="skillName"
-          autocomplete="off"
-          placeholder="Ex. HTML">
+    <div class="form-control-group">
+      <label for="skill-name">Skill name</label>
+      <input 
+      #skillName
+      type="text" 
+      (focus)="showSuggestedSkills = true"
+      id="skill-name" 
+      class="form-control" 
+      formControlName="skillName"
+      autocomplete="off"
+      placeholder="Ex. HTML">
 
-        <section 
-          [@scale]
-          class="suggested-skills" 
-          *ngIf="showSuggestedSkills">
-            <ul class="suggested-skill-list">
-              <li 
-              class="suggested-skill" 
-              (click)="selectSuggestion(skill); showSuggestedSkills = false"
-              *ngFor="let skill of suggestedSkills">
-                {{ skill }}
-              </li>
-            </ul>
-        </section>
+      <section 
+      [@scale]
+      class="suggested-skills" 
+      *ngIf="showSuggestedSkills">
+        <ul class="suggested-skill-list">
+          <li 
+          class="suggested-skill" 
+          (click)="selectSuggestion(skill); showSuggestedSkills = false"
+          *ngFor="let skill of suggestedSkills">
+            {{ skill }}
+          </li>
+        </ul>
+      </section>
 
-      </div>
+    </div>
 
-      <expertise-level 
-        [(currentExpertiseLevel)]="currentExpertiseLevel">
-      </expertise-level>
+    <expertise-level 
+    [(currentExpertiseLevel)]="currentExpertiseLevel">
+    </expertise-level>
 
-      <div class="action-btns">
-        <button 
-        pushDownBtn
-        type="button"
-        (click)="closeAddSkill()" 
-        class="btn">
-            Cancel
-        </button>
-        <button 
-          pushDownBtn
-          type="submit"
-          class="btn btn-primary"
-          [disabled]="!skillName.value.length">
-            Save
-        </button>
-      </div>
+    <div class="action-btns">
+      <button 
+      pushDownBtn
+      type="button"
+      (click)="closeAddSkill()" 
+      class="btn">
+          Cancel
+      </button>
+      <button 
+      pushDownBtn
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="!skillName.value.length">
+        Save
+      </button>
+    </div>
   </form>
 </article>
