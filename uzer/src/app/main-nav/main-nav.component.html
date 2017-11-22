@@ -1,35 +1,57 @@
 <header>
   <nav>
+    
     <section class="nav-left">
+      
       <figure class="logo" routerLink="/">
         <img src="./assets/logo.svg" alt="Logo" height="35px">
       </figure>
 
-      <button routerLink="users" pushDownBtn class="btn btn-primary">
-        Users
-        <span class="user-count">{{ numUsers }}</span>
+      <button 
+        routerLink="users" 
+        pushDownBtn 
+        mat-raised-button>
+          Users
+          <span class="user-count">
+            {{ numUsers }}
+          </span>
       </button>
     </section>
 
     <section class="nav-right">
-      <div *ngIf="isUserLoggedIn" class="user-dropdown" (click)="userDropdownTargetVisible = !userDropdownTargetVisible">
-        <div class="user-dropdown-toggle">
-          <div class="user-initials" [style.backgroundColor]="loggedInUser.profileColor">
-            <span>{{ loggedInUser | initials }}</span>
+
+      <div 
+        *ngIf="isUserLoggedIn" 
+        class="user-dropdown" 
+        [matMenuTriggerFor]="appMenu">
+          <div class="user-dropdown-toggle">
+            <div 
+              class="user-initials"
+              [style.backgroundColor]="loggedInUser.profileColor">
+                <span>{{ loggedInUser | initials }}</span>
+              </div>
+              <i class="fa fa-caret-down"></i>
           </div>
-          <i class="fa fa-caret-down"></i>
-        </div>
-        <div *ngIf="userDropdownTargetVisible" class="user-dropdown-target" [@userDropdownTargetAnimate]="userDropdownTargetVisible">
-          <ul class="user-dropdown-links">
-            <li [routerLink]="(['/users', loggedInUser._id])" class="user-dropdown-link">My profile</li>
-          </ul>
-        </div>
       </div>
 
-      <button (click)="showAddUser()" pushDownBtn class="btn btn-secondary">
-        Add user
+      <mat-menu #appMenu="matMenu">
+        <button 
+          mat-menu-item 
+          [routerLink]="['/users', loggedInUser._id]"> 
+            My profile 
+        </button>
+      </mat-menu>
+
+      <button 
+        mat-raised-button 
+        (click)="showAddUser()" 
+        pushDownBtn 
+        color="accent">
+          Add user
       </button>
+
     </section>
+
   </nav>
 </header>
 

@@ -2,6 +2,7 @@ import { UsersService } from './../users/users.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'user-single',
@@ -13,7 +14,8 @@ export class UserSingleComponent implements OnInit, OnDestroy {
   userId: String;
   paramMap;
   showSpinner: Boolean = true;
-  selectOneSubscription;
+  selectOneUserSubscription = new Subscription();
+  paramMapSubscription = new Subscription();
 
   constructor(
     private router: Router,
@@ -23,13 +25,16 @@ export class UserSingleComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.userId = this.activatedRoute.snapshot.paramMap.get('userId');// retrive user id from route
-    //get user
-    this.selectOneSubscription = this.userService.selectOne(this.userId)
+    this.paramMapSubscription = this.activatedRoute.paramMap
+    .subscribe((paramMap) => {
+      this.userId = paramMap.get('userId');// retrive user id from route
+      //get user
+      this.selectOneUserSubscription = this.userService.selectOne(this.userId)
       .subscribe((data) => {
         this.user = data['results'];
         this.showSpinner = false;
       });
+    });
   }
 
   goBack() {
@@ -37,7 +42,7 @@ export class UserSingleComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.selectOneSubscription.unsubscribe();
+    this.selectOneUserSubscription.unsubscribe();
+    this.paramMapSubscription.unsubscribe();
   }
-
 }

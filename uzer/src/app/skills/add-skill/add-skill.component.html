@@ -1,5 +1,7 @@
 <article class="add-skill-wrapper">
+  
   <form 
+  *ngIf="!showSpinner"
   [formGroup]="addSkillForm" 
   id="add-skill-form" 
   (submit)="addSkill(addSkillForm)" 
@@ -54,4 +56,7 @@
       </button>
     </div>
   </form>
+
+  <spinner *ngIf="showSpinner" [inline]="false" size="lg" color="primary"></spinner>
+
 </article>

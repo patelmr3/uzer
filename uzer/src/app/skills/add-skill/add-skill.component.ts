@@ -32,9 +32,10 @@ export class AddSkillComponent implements OnInit {
   showSuggestedSkills: Boolean;
   addSkillFormzIndex: Number = 105;
   currentExpertiseLevel = {};
+  showSpinner: Boolean;
 
-  addSkillSubscription: Subscription;
-  updateSkillSubscription: Subscription;
+  addSkillSubscription = new Subscription();
+  updateSkillSubscription = new Subscription();
 
   @Input() addSkillModalVisible;
   @Output() addSkillModalVisibleChange = new EventEmitter();
@@ -71,6 +72,8 @@ export class AddSkillComponent implements OnInit {
       expertiseLevel: this.currentExpertiseLevel
     }
 
+    this.showSpinner = true;
+
     this.addSkillSubscription = this.skillsService.add(newSkill)
     .subscribe((data) => {
       console.log(data);
@@ -80,6 +83,7 @@ export class AddSkillComponent implements OnInit {
       } else {
         console.log('skill exists');
       }
+      this.showSpinner = false;
     });
   }
 

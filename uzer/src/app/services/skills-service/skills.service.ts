@@ -26,4 +26,8 @@ export class SkillsService {
   update(skill) {
     return this.http.put(`${this.API}/users/${this.loggedInUser._id}/skills`, skill);
   }
+
+  delete(skillName) {
+    return this.http.delete(`${this.API}/users/${this.loggedInUser._id}/skills/${skillName}`);
+  }
 }

@@ -7,6 +7,7 @@ import {
 import { 
   Component, 
   OnInit,
+  OnDestroy,
   Input,
   Output,
   EventEmitter } from '@angular/core';
@@ -26,7 +27,7 @@ import { Subscription } from 'rxjs/Subscription';
   styleUrls: ['./update-skill.component.scss'],
   animations: [scale, scaleCenter, fadeIn]
 })
-export class UpdateSkillComponent implements OnInit {
+export class UpdateSkillComponent implements OnInit, OnDestroy {
 
   updateSkillForm;
   addSkillFormzIndex: Number = 105;
@@ -38,7 +39,7 @@ export class UpdateSkillComponent implements OnInit {
   @Output() updateSkillModalVisibleChange = new EventEmitter();
   @Output() skillUpdated = new EventEmitter();
 
-  updateSkillSubscription: Subscription;
+  updateSkillSubscription = new Subscription();
 
   constructor(private skillsService: SkillsService) { }
 
@@ -62,5 +63,9 @@ export class UpdateSkillComponent implements OnInit {
     this.updateSkillModalVisible = false; //hide modal
     this.updateSkillModalVisibleChange
     .emit(this.updateSkillModalVisible); //ask modal to close
+  }
+
+  ngOnDestroy() {
+    this.updateSkillSubscription.unsubscribe();
   }
 }

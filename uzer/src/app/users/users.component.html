@@ -1,32 +1,49 @@
-<section class="user-wrapper">
+<section class="users-wrapper">
 
   <page-title pageTitle="Users"></page-title>
   
   <section class="user-list container">
-    <article
-    [routerLink]="['/users', user._id]"
-    pushDownBtn
-    *ngFor="let user of users"
-    class="user" [@slideIn]="slideInUserInitials">
-      <div class="user-name">
-        <div 
-        class="user-initials" 
-        [@slideIn]="slideInUserInitials"
-        [style.backgroundColor]="user.profileColor">
-          {{ user | initials }}
-        </div>
-        <div 
-        class="user-full-name" 
-        [@slideIn]="slideInUserInitials">
-          {{ user.firstName + ' ' + user.lastName }}
-        </div>
-      </div>
-      <div class="user-job-position">{{ user.jobPosition }}</div>
-    </article>
+    <div class="row">
+
+      <article
+        *ngFor="let user of users"
+        class="col user" [@slideIn]="slideInUserInitials">
+          
+          <div class="card">
+            <div 
+              class="user-initials" 
+              [@slideIn]="slideInUserInitials"
+              [style.backgroundColor]="user.profileColor">
+                {{ user | initials }}
+            </div>
+            <div 
+              class="user-full-name" 
+              [@slideIn]="slideInUserInitials">
+                {{ user.firstName + ' ' + user.lastName }}
+            </div>
+            <div class="user-job-position">
+              {{ user.jobPosition }}
+            </div>
+            <button 
+              mat-button 
+              class="btn"
+              [routerLink]="['/users', user._id]">
+                View profile
+            </button>
+          </div>
+
+      </article>
+
+    </div>
     <article *ngIf="noUsers">No users found</article>
   </section>
 
-  <spinner *ngIf="showSpinner" [inline]="false" size="lg" color="primary"></spinner>
+  <spinner 
+    *ngIf="showSpinner" 
+    [inline]="false" 
+    size="lg" 
+    color="primary">
+  </spinner>
 
   <router-outlet></router-outlet>
 

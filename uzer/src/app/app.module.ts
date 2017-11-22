@@ -5,6 +5,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+// material design components
+import { 
+  MatMenuModule, 
+  MatButtonModule, 
+  MatGridListModule,
+  MatCardModule 
+} from '@angular/material';
+
 import { AppComponent } from './app.component';
 import { MainNavComponent } from './main-nav/main-nav.component';
 import { PushDownBtnDirective } from './directives/push-down-btn.directive';
@@ -25,11 +33,12 @@ import { UpdateSkillComponent } from './skills/update-skill/update-skill.compone
 import { ModalComponent } from './modal/modal.component';
 import { ExpertiseLevelIndicatorComponent } from './skills/expertise-level-indicator/expertise-level-indicator.component';
 import { ExpertiseLevelComponent } from './skills/expertise-level/expertise-level.component';
+import { HomeComponent } from './home/home.component';
 
 const appRoutes: Routes = [
   {
     path: '',
-    component: LoginFormComponent
+    component: HomeComponent
   },  
   {
     path: 'login',
@@ -63,13 +72,20 @@ const appRoutes: Routes = [
     ModalComponent,
     ExpertiseLevelIndicatorComponent,
     ExpertiseLevelComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    [
+      MatMenuModule,
+      MatButtonModule,
+      MatGridListModule,
+      MatCardModule
+    ]
   ],
   providers: [UsersService, SkillsService],
   bootstrap: [AppComponent],

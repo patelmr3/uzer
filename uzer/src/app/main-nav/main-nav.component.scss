@@ -19,9 +19,12 @@ nav {
     outline: none;
   }
   .user-count {
-    padding: 0em .4em .18em;
+    margin-left: .3em;
+    padding: .2em .5em;
     font-size: 1em;
     font-weight: 500;
+    border-radius: 3px;
+    color: #fff;
     background-color: $color-red;
     border-radius: .1em;
   }
@@ -33,23 +36,21 @@ nav {
 
 //user dropdown ==========================
 .user-dropdown {
-  position: relative;
   margin: 0px 20px 0px 15px;
-  border-radius: 5px;
-  transition: ease background-color .3s;
-  background-color: lighten($color-ui, 89);
-  &:hover {
-    background-color: lighten($color-ui, 80);
-  }
 }
 
 //user dropdown toggle ===================
 .user-dropdown-toggle {
   display: flex;
   cursor: pointer;
+  background-color: lighten($color-ui, 47);
+  transition: ease background-color .2s;
+  &:hover {
+    background-color: lighten($color-ui, 40);
+  }
   .user-initials {
     position: relative;
-    background-color: lighten($color-primary, 40);
+    background-color: lighten($color-ui, 20);
     span {
       position: absolute;
       top: 50%;
@@ -59,26 +60,8 @@ nav {
   }
   i {
     display: block;
-    padding: 15px 10px 15px 5px;
-    color: lighten($color-ui, 50);
+    padding: 12px 10px 12px 6px;
+    color: lighten($color-ui, 10);
   }
 }
 
-//user dropdown target ===================
-.user-dropdown-target {
-  overflow: hidden;
-  position: absolute;
-  top: 60px;
-  right: 0px;
-  min-width: 150px;
-  background-color: #fff;
-  border-radius: 5px;
-  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2);
-  .user-dropdown-link {
-    padding: 10px 15px;
-    &:hover {
-      cursor: pointer;
-      background-color: #eee;
-    }
-  }
-}

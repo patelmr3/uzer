@@ -1,17 +1,29 @@
-//colors
-$color-primary: #4051b5;
-$color-secondary: #00bda4;
+@import "~@angular/material/_theming";
+
+@include mat-core();
+
+// Define the theme.
+$color-primary: mat-color(mat-palette($mat-indigo));
+$color-accent: mat-color(mat-palette($mat-blue));
 $color-ui: #607d8b;
 $color-red: #f44034;
+
+$palette-primary: mat-palette($mat-indigo);
+$palette-accent: mat-palette($mat-blue);
+
+$app-theme: mat-light-theme($palette-primary, $palette-accent);
+
+// Include the theme styles for only specified components.
+@include mat-core-theme($app-theme);
+@include mat-button-theme($app-theme);
+@include mat-menu-theme($app-theme);
 
 //fonts
 $font-primary: 'Roboto', sans-serif;
 $font-secondary: Arial, "Helvetica Neue", Helvetica, sans-serif;
 
-%card {
-  padding: 1.1em;
-  border-radius: .3em;
-  background-color: #fff;
-  box-shadow: 0px 1px 3px rgba(0,0,0,.2);
-  transition: ease box-shadow .2s;
+%container {
+  max-width: 1366px;
+  margin: 0px auto;
+  padding: 15px;
 }

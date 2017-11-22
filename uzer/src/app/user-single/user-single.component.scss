@@ -1,56 +1,28 @@
 @import '~scss/mixins';
 
 .user-profile-banner{
-  position: relative;
-  height: 150px;
+  padding: 30px 0px;
   background-color: #eee;
   background-image: url('../../assets/user_single_banner.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-
-  .close-user-profile-btn{
-    position: absolute;
-    left: 30px;
-    top: 15px;
-    padding: .3em .6em;
-    font-size: 1.5em;
+  .user-profile-banner-inner {
+    display: flex;
+    flex-direction: column;
   }
 }
 
-.user-profile-content {
-  display: flex;
-
-  .user-profile-content-left{
-    width: 20%;
-    padding: 2em;
-    border-right: 1px solid lighten($color: $color-ui, $amount: 95);
-  }
-
-  .user-profile-content-main{
-    flex-grow: 1;
-    padding: 2em;
-  }
-}
-
-.user-info{
-  line-height: 1.5;
+.user-profile-content{
+  margin: 50px auto;
 }
 
 .user-profile-name{
-  font-size: 1.5em;
-  font-weight: 700;
+  margin: 0px;
+  font-size: 3em;
+  color: #fff;
 }
 
-.user-profile-cards{
-  display: flex;
-
-  .user-profile-card{
-    width: 49%;
-  }
-}
-
-.user-profile-card{ 
-  margin: 1%;
-  @extend %card;
+.user-profile-job-position{
+  color: #fff;
 }

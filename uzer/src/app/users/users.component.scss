@@ -1,33 +1,19 @@
 @import '~scss/mixins';
+
+.user{
+  .card{
+    height: 230px;
+    align-items: center;
+    justify-content: space-around;
+  }
+}
+
 .user-list {
-  display: flex;
-  flex-wrap: wrap;
+  margin: 30px auto; 
 }
 
-.user {
-  display: flex;
-  flex-direction: column;
-  width: 31.33%;
-  margin: 1%;
-  @extend %card;
-}
 
-.user-name {
-  display: flex;
-  flex-direction: row;
-  .user-full-name {
-    margin-left: 1em;
-    align-self: center;
-    font-size: 1.3em;
-    font-weight: 800;
-  }
-}
-
-@media all and (max-width: 768px) {
-  .user-list {
-    flex-direction: column;
-  }
-  .user {
-    width: 100%;
-  }
+.user-full-name {
+  font-size: 1.3em;
+  font-weight: 800;
 }

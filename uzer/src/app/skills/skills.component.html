@@ -1,59 +1,70 @@
 <section class="skills-wrapper">
   
-  <section>
+  <section class="skills-header">
     <header class="section-header">
       Skills
     </header>
   </section>
 
   <section class="skill-list-wrapper">
-    
     <ul class="skill-list">
       
-      <li class="skill" *ngFor="let skill of skills; let index = index">
-        
-        <div class="skill-name">
-          {{ skill.skillName }}
-        </div>
-
-        <div class="expertise-level">
-          <expertise-level-indicator 
-            [expertiseLevel]="skill.expertiseLevel">
-          </expertise-level-indicator>
-        </div>    
-
-        <div class="skill-controls">
-          <div 
-            class="skill-controls-delete btn"
-            (click)="deleteSkill(index)">
-              <i class="fa fa-trash"></i>
+      <li 
+        [@scale]
+        class="skill" 
+        *ngFor="let skill of skills; let index = index">
+          
+          <div class="skill-name">
+            {{ skill.skillName }}
           </div>
-          <div 
-            class="skill-controls-update btn"
-            (click)="
-              updateSkillModalVisible = !updateSkillModalVisible;
-              selectedSkill = skill;
-              selectedSkill['index'] = index">
-              <i class="fa fa-pencil"></i>
-          </div>
-        </div>
 
+          <div class="expertise-level">
+            <expertise-level-indicator 
+              [expertiseLevel]="skill.expertiseLevel">
+            </expertise-level-indicator>
+          </div>    
+
+          <div class="skill-controls">
+            <button
+              class="skill-controls-toggle"
+              mat-button 
+              [matMenuTriggerFor]="menu">
+                <i class="fa fa-cog"></i>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button 
+                mat-menu-item 
+                (click)="deleteSkill(index, skill)">
+                  <i class="fa fa-trash"></i> Delete
+              </button>
+              <button 
+              mat-menu-item
+                (click)="
+                updateSkillModalVisible = !updateSkillModalVisible;
+                selectedSkill = skill;
+                selectedSkill['index'] = index">
+                  <i class="fa fa-pencil"></i> Edit
+              </button>
+            </mat-menu>
+          </div>
       </li>
 
     </ul>
-
     <div 
       *ngIf="!skills.length" 
       class="no-skills-message">
         You have no skills
     </div>
 
+  </section>
+
+  <section>
     <button 
+      mat-button
       class="btn btn-secondary"
       (click)="addSkillModalVisible = !addSkillModalVisible">
         Add
     </button>
-
   </section>
 
   <modal 

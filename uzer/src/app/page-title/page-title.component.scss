@@ -13,8 +13,7 @@
   margin-top: 47px;
   padding: 10px;
   border-radius: 3px;
-  font-size: 2em;
-  font-weight: 800;
+  font-size: 1.5em;
   //color: #fff;
   color: lighten($color-ui, 90);
   &:after{
@@ -22,7 +21,7 @@
     display: block;
     width: 100%;
     margin-top: 10px;
-    border-bottom: 5px solid $color-secondary;
+    border-bottom: 3px solid $color-accent;
     transform: scale(0);
     transition: ease transform .3s;
   }
