@@ -12,6 +12,8 @@ import {
   Output,
   EventEmitter } from '@angular/core';
 
+import { ActivatedRoute } from '@angular/router';
+
 import { 
   FormGroup, 
   FormControl } from '@angular/forms';
@@ -19,6 +21,7 @@ import {
 import {
   SkillsService
 } from '../../services/skills-service/skills.service';
+
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({
@@ -29,9 +32,10 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class UpdateSkillComponent implements OnInit, OnDestroy {
 
-  updateSkillForm;
+  updateSkillForm: FormGroup;
   addSkillFormzIndex: Number = 105;
-  currentExpertiseLevel;
+  currentExpertiseLevel: any;
+  activatedUserId: String;
 
   @Input() skill;
   @Input() updateSkillModalVisible;
@@ -40,18 +44,25 @@ export class UpdateSkillComponent implements OnInit, OnDestroy {
   @Output() skillUpdated = new EventEmitter();
 
   updateSkillSubscription = new Subscription();
+  paramMapSubscription = new Subscription();
 
-  constructor(private skillsService: SkillsService) { }
+  constructor(
+    private skillsService: SkillsService,
+    private activatedRoute: ActivatedRoute
+  ) { }
 
   ngOnInit() {
-    //initialize form group & form control
     this.updateSkillForm = new FormGroup({ });
     this.currentExpertiseLevel = this.skill.expertiseLevel;
+
+    this.paramMapSubscription = this.activatedRoute.paramMap.subscribe((paramMap) => {
+      this.activatedUserId = paramMap.get('userId');
+    });
   }
 
   updateSkill(formData) { 
     this.skill.expertiseLevel = this.currentExpertiseLevel;
-    this.updateSkillSubscription = this.skillsService.update(this.skill)
+    this.updateSkillSubscription = this.skillsService.update(this.skill, this.activatedUserId)
     .subscribe((data) => {
       console.log(data);
       this.skillsService.skillUpdatedEvent.emit(this.skill);
@@ -67,5 +78,6 @@ export class UpdateSkillComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.updateSkillSubscription.unsubscribe();
+    this.paramMapSubscription.unsubscribe();
   }
 }

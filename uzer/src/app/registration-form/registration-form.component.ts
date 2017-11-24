@@ -1,16 +1,35 @@
 import { UsersService } from '../users/users.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'registration-form',
   templateUrl: './registration-form.component.html',
   styleUrls: ['./registration-form.component.scss']
 })
-export class RegistrationFormComponent implements OnInit {
-  registrationForm;
+export class RegistrationFormComponent implements OnInit, OnDestroy {
+  //registration form
+  registrationForm: FormGroup; 
+
+  //form controls
+  firstName = new FormControl('', []);
+  lastName = new FormControl('', []);
+  jobPosition = new FormControl('', []);
+  email = new FormControl('', [
+    Validators.pattern(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i)
+  ]);
+  phone = new FormControl('', [
+    Validators.pattern(/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/)
+  ]);
+
+  //variables
   errorMessage: String;
+  showSpinner: Boolean;
+
+  //subscriptions
+  insertUserSubscription = new Subscription();
 
   constructor(
     private router: Router,
@@ -19,15 +38,11 @@ export class RegistrationFormComponent implements OnInit {
 
   ngOnInit() {
     this.registrationForm = new FormGroup({
-      'firstName': new FormControl('', []),
-      'lastName': new FormControl('', []),
-      'email': new FormControl('', [
-        Validators.pattern(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i)
-      ]),
-      'phone': new FormControl('417-779-1010', [
-        Validators.pattern(/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/)
-      ]),
-      'jobPosition': new FormControl('Front-end developer', [])
+      firstName: this.firstName,
+      lastName: this.lastName,
+      email: this.email,
+      phone: this.phone,
+      jobPosition: this.jobPosition
     });
   }
 
@@ -41,8 +56,12 @@ export class RegistrationFormComponent implements OnInit {
       jobPosition: fc.jobPosition.value
     }
 
-    this.usersService.insert(formData).subscribe((data) => {
+    this.showSpinner = true;
+
+    this.insertUserSubscription = this.usersService.insert(formData)
+    .subscribe((data) => {
       console.log(data);
+      this.showSpinner = false;
 
       if(data['status'] === 'success') {
         this.usersService.emitUserCreated();
@@ -51,7 +70,11 @@ export class RegistrationFormComponent implements OnInit {
         this.errorMessage = data['message'];
         console.log(data['message']);
       }
+
     });
   }
 
+  ngOnDestroy() {
+    this.insertUserSubscription.unsubscribe();
+  }
 }

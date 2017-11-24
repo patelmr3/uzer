@@ -11,12 +11,15 @@ import {
   Output,
   EventEmitter } from '@angular/core';
 
+import { ActivatedRoute } from '@angular/router';
+
 import { 
   FormGroup, 
   FormControl } from '@angular/forms';
 
 import { SkillsService } from '../../services/skills-service/skills.service';
 import { Subscription } from 'rxjs/Subscription';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'add-skill',
@@ -26,16 +29,16 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class AddSkillComponent implements OnInit {
 
-  constructor(private skillsService: SkillsService) { }
-
-  addSkillForm;
+  addSkillForm: FormGroup;
   showSuggestedSkills: Boolean;
   addSkillFormzIndex: Number = 105;
-  currentExpertiseLevel = {};
+  currentExpertiseLevel: any = {};
   showSpinner: Boolean;
+  activatedUserId: String;
 
   addSkillSubscription = new Subscription();
   updateSkillSubscription = new Subscription();
+  paramMapSubscription = new Subscription();
 
   @Input() addSkillModalVisible;
   @Output() addSkillModalVisibleChange = new EventEmitter();
@@ -54,10 +57,21 @@ export class AddSkillComponent implements OnInit {
     'MySQL'
   ];
 
+  constructor(
+    private skillsService: SkillsService,
+    private activatedRoute: ActivatedRoute,
+    private snackBar: MatSnackBar
+  ) { }
+
   ngOnInit() {
     //initialize form group & form control
     this.addSkillForm = new FormGroup({
       'skillName': new FormControl('', [])
+    });
+
+    this.paramMapSubscription = this.activatedRoute.paramMap.subscribe((paramMap) => {
+      this.activatedUserId = paramMap.get('userId');
+      console.log(this.activatedUserId);
     });
   }
 
@@ -74,15 +88,19 @@ export class AddSkillComponent implements OnInit {
 
     this.showSpinner = true;
 
-    this.addSkillSubscription = this.skillsService.add(newSkill)
+    this.addSkillSubscription = this.skillsService.add(newSkill, this.activatedUserId)
     .subscribe((data) => {
+
       console.log(data);
+
       if (data['success']) {
-        this.skillsService.skillAddedEvent.emit(newSkill); //emit an event when new skill is edded
+        this.skillsService.skillAddedEvent.emit(newSkill,); //emit an event when new skill is edded
+        this.snackBar.open('Skill added: ' + newSkill.skillName, '', {duration: 2000});
         this.closeAddSkill();
       } else {
-        console.log('skill exists');
+        this.snackBar.open('Error: ' + newSkill.skillName + ' is already added', '', {duration: 2000});
       }
+
       this.showSpinner = false;
     });
   }

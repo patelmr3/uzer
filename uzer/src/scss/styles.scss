@@ -17,6 +17,8 @@ $app-theme: mat-light-theme($palette-primary, $palette-accent); //material desig
 @include mat-slider-theme($app-theme);
 @include mat-form-field-theme($app-theme);
 @include mat-input-theme($app-theme);
+@include mat-select-theme($app-theme);
+@include mat-snack-bar-theme($app-theme);
 
 @import 'mixins';
 @import 'range_input';
@@ -61,13 +63,13 @@ body {
   border-radius: 3px !important;
 
   &.mat-primary {
-    &:hover {
+    &:hover:not([disabled]) {
       background-color: darken($color-primary, 10) !important;
     }
   }
 
   &.mat-accent {
-    &:hover {
+    &:hover:not([disabled]) {
       background-color: darken($color-accent, 10) !important;
     }
   }
@@ -88,40 +90,13 @@ label {
   width: 100%;
 }
 
-.form-control-group {
-  margin-bottom: 1.2em;
-}
-
-.form-control {
-  display: block;
-  width: 100%;
-  padding: .8em;
-  font-size: 1em;
-  color: $color-ui;
-  border: 2px solid;
-  border-radius: 3px;
-  border-color: #eee;
-  &::placeholder {
-    opacity: .5;
-  }
-  &.primary {
-    border-color: lighten($color-ui, 45);
-  }
-  &:focus {
-    outline: none;
-    border-color: lighten($color-ui, 10);
-  }
+.mat-form-field-underline {
+  background-color: #f3f3f3;
 }
 
 .card{
   padding: 20px;
   border-color: lighten($color-ui, 45);
-}
-
-.error-message {
-  margin-top: .7;
-  font-family: $font-secondary;
-  color: $color-red;
 }
 
 .user-initials {

@@ -18,7 +18,7 @@ import { scale } from '../animations';
 
 export class SkillsComponent implements OnInit, OnDestroy {
   
-  userId;
+  activatedUserId;
   skills: any = [];
   slectedSkill; //skill to be selected for edit or delete
 
@@ -38,11 +38,11 @@ export class SkillsComponent implements OnInit, OnDestroy {
     
     this.paramMapSubscription = this.activatedRoute.paramMap
     .subscribe((paramMap) => {
-      this.userId = paramMap.get('userId');
+      this.activatedUserId = paramMap.get('userId');
       
       //get skills
       this.getSkillsSubscription = this.skillsService
-      .get(this.userId)
+      .get(this.activatedUserId)
       .subscribe((data) => {
         this.skills = data || [];
       });
@@ -63,7 +63,7 @@ export class SkillsComponent implements OnInit, OnDestroy {
 
   deleteSkill(index, skill) {
     this.deleteSkillSubscription = this.skillsService
-    .delete(skill.skillName)
+    .delete(skill.skillName, this.activatedUserId)
     .subscribe((data) => {
       console.log(data);
       this.skills.splice(index, 1);

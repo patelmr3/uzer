@@ -1,9 +1,12 @@
-.api-error-message {
-  margin: 1.5em 0em;
-  padding: 1em;
-  font-size: 1.2em;
-  text-align: center;
-  border-radius: .3em;
-  color: #fff;
-  background-color: #EF5350;
+.mat-form-field {
+  margin-bottom: 20px;
+
+  &:last-of-type {
+    margin-top: 15px;
+  }
+}
+
+.server-error-message{
+  margin-bottom: 20px;
+  font-size: .8em;
 }

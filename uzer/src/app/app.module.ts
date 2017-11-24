@@ -12,7 +12,9 @@ import {
   MatGridListModule,
   MatCardModule,
   MatSliderModule,
-  MatInputModule
+  MatInputModule,
+  MatSnackBarModule,
+  MatSelectModule
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -82,14 +84,16 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    [//material design modules
-      MatMenuModule,
-      MatButtonModule,
-      MatGridListModule,
-      MatCardModule,
-      MatSliderModule,
-      MatInputModule
-    ]
+    //material design modules start
+    MatMenuModule,
+    MatButtonModule,
+    MatGridListModule,
+    MatCardModule,
+    MatSliderModule,
+    MatInputModule,
+    MatSnackBarModule,
+    MatSelectModule
+    //material design modules end
   ],
   providers: [UsersService, SkillsService],
   bootstrap: [AppComponent],

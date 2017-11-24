@@ -38,20 +38,22 @@ export const slideInTop: AnimationEntryMetadata =
       opacity: 1,
       transform: 'translateY(0%)'
     })),
-    transition(':enter', animate('.1s ease-in-out'))
+    transition(':enter', animate('.1s ease-in-out')),
+    transition(':leave', animate('.1s ease-in-out'))
   ]);
 
 export const scale: AnimationEntryMetadata = 
   trigger('scale', [
     state('void', style({
       opacity: 0,
-      transform: 'scale(.9)'
+      transform: 'scale(.6)'
     })),
     state('*', style({
       opacity: 1,
       transform: 'scale(1)'
     })),
-    transition(':enter', animate('.2s ease-in-out'))
+    transition(':enter', animate('.2s ease-in-out')),
+    transition(':leave', animate('.2s ease-in'))
   ]);
 
 export const scaleCenter: AnimationEntryMetadata = 

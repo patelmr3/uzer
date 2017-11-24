@@ -1,5 +1,7 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs/Subscription';
 
 @Injectable()
 export class SkillsService {
@@ -7,27 +9,32 @@ export class SkillsService {
   skillAddedEvent = new EventEmitter();
   skillUpdatedEvent = new EventEmitter();
 
-  API = 'http://localhost:3030'; //API url
-  loggedInUser;
+  API: String = 'http://localhost:3030'; 
+  loggedInUser: String;
+  activatedUserId: String;
 
-  constructor(private http: HttpClient) { 
+  paramMapSubscription = new Subscription();
+
+  constructor(
+    private http: HttpClient,
+    private activatedRoute: ActivatedRoute
+  ) { 
     this.loggedInUser = JSON.parse(window.sessionStorage.getItem('loggedInUser'));
   }
 
   get(userId) {
-    let id = userId;
-    return this.http.get(`${this.API}/users/${id}/skills`);
+    return this.http.get(`${this.API}/users/${userId}/skills`);
   }
 
-  add(skill) {
-    return this.http.post(`${this.API}/users/${this.loggedInUser._id}/skills`, skill);
+  add(skill, userId) {
+    return this.http.post(`${this.API}/users/${userId}/skills`, skill);
   }
 
-  update(skill) {
-    return this.http.put(`${this.API}/users/${this.loggedInUser._id}/skills`, skill);
+  update(skill, userId) {
+    return this.http.put(`${this.API}/users/${userId}/skills`, skill);
   }
 
-  delete(skillName) {
-    return this.http.delete(`${this.API}/users/${this.loggedInUser._id}/skills/${skillName}`);
+  delete(skillName, userId) {
+    return this.http.delete(`${this.API}/users/${userId}/skills/${skillName}`);
   }
 }
