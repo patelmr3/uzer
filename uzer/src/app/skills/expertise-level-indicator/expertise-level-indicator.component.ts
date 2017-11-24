@@ -21,14 +21,12 @@ from '@angular/core';
   `,
   styles: [`    
     .expertise-level-name {
-      display: inline-block;
-      padding: .3em;
+      padding: .6em;
       border-radius: 3px;
       position: relative;
       border: 1px solid;
       font-size: .9em;
       font-weight: 500;
-      text-transform: uppercase;
     }
     .sub-level{
       opacity: .2;

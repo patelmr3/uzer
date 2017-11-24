@@ -4,15 +4,9 @@
     id="update-skill-form" 
     (submit)="updateSkill(updateSkillForm)">
 
-      <div class="form-control-group">
-        
-        <label for="skill-name">Skill name</label>
-        
-        <div>
-          {{ skill.skillName }}
-        </div>
-
-      </div>
+      <mat-form-field>
+        <input matInput disabled="true" value="{{skill.skillName}}">
+      </mat-form-field>
 
       <expertise-level 
         [(currentExpertiseLevel)]="currentExpertiseLevel">
@@ -20,6 +14,7 @@
 
       <div class="action-btns">
         <button 
+          mat-raised-button
           pushDownBtn
           type="button"
           (click)="closeUpdateSkill()" 
@@ -27,6 +22,7 @@
             Cancel
         </button>
         <button 
+          mat-raised-button
           pushDownBtn
           type="submit"
           class="btn btn-primary">

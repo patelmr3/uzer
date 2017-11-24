@@ -7,17 +7,15 @@
   (submit)="addSkill(addSkillForm)" 
   novalidate>
 
-    <div class="form-control-group">
-      <label for="skill-name">Skill name</label>
-      <input 
-      #skillName
-      type="text" 
-      (focus)="showSuggestedSkills = true"
-      id="skill-name" 
-      class="form-control" 
-      formControlName="skillName"
-      autocomplete="off"
-      placeholder="Ex. HTML">
+      <mat-form-field class="form-field" color="primary">
+        <input 
+        matInput
+        #skillName
+        (focus)="showSuggestedSkills = true"
+        id="skill-name" 
+        formControlName="skillName"
+        placeholder="Skill">
+      </mat-form-field>
 
       <section 
       [@scale]
@@ -33,7 +31,7 @@
         </ul>
       </section>
 
-    </div>
+   
 
     <expertise-level 
     [(currentExpertiseLevel)]="currentExpertiseLevel">
@@ -41,16 +39,17 @@
 
     <div class="action-btns">
       <button 
+      mat-button
       pushDownBtn
       type="button"
-      (click)="closeAddSkill()" 
-      class="btn">
+      (click)="closeAddSkill()">
           Cancel
       </button>
       <button 
+      mat-button
+      color="primary"
       pushDownBtn
       type="submit"
-      class="btn btn-primary"
       [disabled]="!skillName.value.length">
         Save
       </button>

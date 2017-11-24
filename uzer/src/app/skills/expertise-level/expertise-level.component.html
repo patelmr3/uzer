@@ -1,16 +1,21 @@
-<div class="form-control-group expertise-level" [formGroup]="expertiseLevelForm">
-  <label for="expertise-level">Expertise level</label>
-  <div class="expertise-levels">
-    <div class="expertise-level-val">{{ expertiseLevel.value }}%</div>
-    <expertise-level-indicator 
-      [expertiseLevel]="currentExpertiseLevel">
-    </expertise-level-indicator>
-  </div>
-  <input 
-    #expertiseLevel
-    (input)="onExpertiseLevelChange(expertiseLevel.value)"
-    type="range" 
-    id="expertise-level" 
-    class="form-control" 
-    formControlName="expertiseLevel">
+<div 
+  class="expertise-level-wrapper" 
+  [formGroup]="expertiseLevelForm">
+    
+    <div class="expertise-levels">
+      <expertise-level-indicator 
+        [expertiseLevel]="currentExpertiseLevel">
+      </expertise-level-indicator>
+    </div>
+
+    <mat-slider
+      id="expertise-level"
+      #expertiseLevel
+      min="0"
+      max="100"
+      thumb-label="true"
+      formControlName="expertiseLevel"
+      (input)="onExpertiseLevelChange(expertiseLevel.value)">
+    </mat-slider>
+
 </div>

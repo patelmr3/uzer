@@ -1,7 +1,23 @@
 @import 'reset';
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
 @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
-@import url('https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css');
+@import './bootstrap4/bootstrap-grid'; //bootstrap v4 grid only
+@import "~@angular/material/_theming"; //material design theme
+@include mat-core(); //material design core
+
+$palette-primary: mat-palette($mat-indigo); //material design primary palette color
+$palette-accent: mat-palette($mat-blue); //material design accent palette color
+
+$app-theme: mat-light-theme($palette-primary, $palette-accent); //material design theme
+
+// Include the theme styles for only specified components.
+@include mat-core-theme($app-theme);
+@include mat-button-theme($app-theme);
+@include mat-menu-theme($app-theme);
+@include mat-slider-theme($app-theme);
+@include mat-form-field-theme($app-theme);
+@include mat-input-theme($app-theme);
+
 @import 'mixins';
 @import 'range_input';
 
@@ -13,7 +29,7 @@ html {
 body {
   overflow-x: hidden;
   color: darken($color-ui, 10);
-  background-color: lighten($color-ui, 50);
+  background-color: lighten($color-ui, 70);
 }
 
 .cf {
@@ -36,27 +52,24 @@ body {
   background-color: rgba(0,0,0,.5);
 }
 
-.btn-primary {
-  color: #fff;
-  background-color: $color-primary;
-  &:hover {
-    background-color: darken($color-primary, 10);
-  }
+.mat-button {
+  border-radius: 3px !important;
 }
-.btn-secondary {
-  color: #fff;
-  background-color: $color-accent;
-  &:hover {
-    background-color: darken($color-accent, 5);
+
+.mat-raised-button {
+  box-shadow: none !important;
+  border-radius: 3px !important;
+
+  &.mat-primary {
+    &:hover {
+      background-color: darken($color-primary, 10) !important;
+    }
   }
-}
-:disabled {
-  color: #fff;
-  border: none;
-  background-color: lighten($color-ui, 40);
-  &:hover {
-    background-color: lighten($color-ui, 40);
-    cursor: default;
+
+  &.mat-accent {
+    &:hover {
+      background-color: darken($color-accent, 10) !important;
+    }
   }
 }
 
@@ -69,6 +82,10 @@ label {
   margin-bottom: .8em;
   font-size: 1em;
   color: darken($color-ui, 10);
+}
+
+.mat-form-field {
+  width: 100%;
 }
 
 .form-control-group {
@@ -140,4 +157,18 @@ label {
   width: 400px;
   padding: 2em;
   background-color: lighten($color-ui, 95);
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: lighten($color-ui, 47);
+  outline: none;
+  box-shadow: none;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: lighten($color-ui, 20);
 }

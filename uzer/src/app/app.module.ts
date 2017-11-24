@@ -5,12 +5,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-// material design components
+// material design modules
 import { 
   MatMenuModule, 
   MatButtonModule, 
   MatGridListModule,
-  MatCardModule 
+  MatCardModule,
+  MatSliderModule,
+  MatInputModule
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -80,11 +82,13 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    [
+    [//material design modules
       MatMenuModule,
       MatButtonModule,
       MatGridListModule,
-      MatCardModule
+      MatCardModule,
+      MatSliderModule,
+      MatInputModule
     ]
   ],
   providers: [UsersService, SkillsService],

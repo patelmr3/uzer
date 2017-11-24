@@ -20,6 +20,7 @@
 }
 
 .skill-list-wrapper {
+  overflow-x: hidden;
   overflow-y: auto;
   flex-grow: 1;
   margin: .4em 0em;
@@ -39,24 +40,22 @@
   .expertise-level {
     width: 100%;
   }
-}
-
-.add-skill-btn {
-  margin: 10px 0px;
-  padding: .5em;
-}
-
-.skill-controls-toggle {
-  min-width: 0px;
-}
-
-.skill-controls {
-  position: relative;
-  display: flex;
-  .btn {
-    padding: .3em;
-    margin-left: 5px;
-    font-size: 14px; // color: lighten($color-ui, 30);
-    // background-color: transparent;
+  .add-skill-btn {
+    margin: 10px 0px;
+    padding: .5em;
+  }
+  .skill-controls-toggle {
+    min-width: 0px;
+  }
+  .skill-controls {
+    position: relative;
+    display: flex;
+    margin-left: 10px;
   }
 }
+
+
+
+
+
+

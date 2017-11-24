@@ -2,6 +2,7 @@
 
 .user{
   .card{
+    @extend %card;
     height: 230px;
     align-items: center;
     justify-content: space-around;

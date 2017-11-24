@@ -32,36 +32,41 @@ nav {
 
 .nav-right {
   display: flex;
-}
 
-//user dropdown ==========================
-.user-dropdown {
-  margin: 0px 20px 0px 15px;
-}
+  @at-root .user-dropdown {
+    margin: 0px 20px 0px 15px;
 
-//user dropdown toggle ===================
-.user-dropdown-toggle {
-  display: flex;
-  cursor: pointer;
-  background-color: lighten($color-ui, 47);
-  transition: ease background-color .2s;
-  &:hover {
-    background-color: lighten($color-ui, 40);
-  }
-  .user-initials {
-    position: relative;
-    background-color: lighten($color-ui, 20);
-    span {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+    @at-root .user-dropdown-toggle {
+      display: flex;
+      cursor: pointer;
+      transition: ease background-color .2s;
+
+      &:hover {
+        background-color: lighten($color-ui, 60);
+      }
+
+      .user-initials {
+        position: relative;
+        background-color: lighten($color-ui, 20);
+
+        span {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
+
+      i {
+        display: block;
+        padding: 12px 10px 12px 6px;
+        color: lighten($color-ui, 10);
+      }
     }
   }
-  i {
-    display: block;
-    padding: 12px 10px 12px 6px;
-    color: lighten($color-ui, 10);
-  }
 }
+
+
+
+
 
