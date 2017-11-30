@@ -4,6 +4,7 @@
   .card{
     @extend %card;
     height: 230px;
+    margin-bottom: 20px;
     align-items: center;
     justify-content: space-around;
   }

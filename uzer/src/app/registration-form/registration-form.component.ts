@@ -3,6 +3,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
+import { MatDialog } from '@angular/material';
+import { AddUserDialogComponent } from '../add-user-dialog/add-user-dialog.component';
 
 @Component({
   selector: 'registration-form',
@@ -24,7 +26,7 @@ export class RegistrationFormComponent implements OnInit, OnDestroy {
     Validators.pattern(/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/)
   ]);
 
-  //variables
+  //properties
   errorMessage: String;
   showSpinner: Boolean;
 
@@ -33,7 +35,8 @@ export class RegistrationFormComponent implements OnInit, OnDestroy {
 
   constructor(
     private router: Router,
-    private usersService: UsersService
+    private usersService: UsersService,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -47,6 +50,8 @@ export class RegistrationFormComponent implements OnInit, OnDestroy {
   }
 
   registerUser(form) {
+    this.showSpinner = true;
+    
     let fc = form.controls;
     const formData = {
       firstName: fc.firstName.value,
@@ -56,8 +61,6 @@ export class RegistrationFormComponent implements OnInit, OnDestroy {
       jobPosition: fc.jobPosition.value
     }
 
-    this.showSpinner = true;
-
     this.insertUserSubscription = this.usersService.insert(formData)
     .subscribe((data) => {
       console.log(data);
@@ -65,7 +68,8 @@ export class RegistrationFormComponent implements OnInit, OnDestroy {
 
       if(data['status'] === 'success') {
         this.usersService.emitUserCreated();
-        this.router.navigate([`/users/${data['id']}`]); //after completing the registration, navigate to user's profile page
+        this.router.navigate([`/users/${data['id']}`]); 
+        this.dialog.closeAll();
       } else {
         this.errorMessage = data['message'];
         console.log(data['message']);

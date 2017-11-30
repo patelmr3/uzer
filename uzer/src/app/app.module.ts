@@ -14,7 +14,8 @@ import {
   MatSliderModule,
   MatInputModule,
   MatSnackBarModule,
-  MatSelectModule
+  MatSelectModule,
+  MatDialogModule
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -38,6 +39,8 @@ import { ModalComponent } from './modal/modal.component';
 import { ExpertiseLevelIndicatorComponent } from './skills/expertise-level-indicator/expertise-level-indicator.component';
 import { ExpertiseLevelComponent } from './skills/expertise-level/expertise-level.component';
 import { HomeComponent } from './home/home.component';
+import { AddUserDialogComponent } from './add-user-dialog/add-user-dialog.component';
+import { AddSkillDialogComponent } from './add-skill-dialog/add-skill-dialog.component';
 
 const appRoutes: Routes = [
   {
@@ -77,6 +80,12 @@ const appRoutes: Routes = [
     ExpertiseLevelIndicatorComponent,
     ExpertiseLevelComponent,
     HomeComponent,
+    AddUserDialogComponent,
+    AddSkillDialogComponent,
+  ],
+  entryComponents: [
+    AddUserDialogComponent,
+    AddSkillDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -84,7 +93,6 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    //material design modules start
     MatMenuModule,
     MatButtonModule,
     MatGridListModule,
@@ -92,8 +100,8 @@ const appRoutes: Routes = [
     MatSliderModule,
     MatInputModule,
     MatSnackBarModule,
-    MatSelectModule
-    //material design modules end
+    MatSelectModule,
+    MatDialogModule
   ],
   providers: [UsersService, SkillsService],
   bootstrap: [AppComponent],

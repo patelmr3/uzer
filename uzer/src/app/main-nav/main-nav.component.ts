@@ -1,7 +1,8 @@
 import { UsersService } from './../users/users.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { MatDialog } from '@angular/material';
+import { AddUserDialogComponent } from '../add-user-dialog/add-user-dialog.component';
 
 @Component({
   selector: 'main-nav',
@@ -29,13 +30,12 @@ export class MainNavComponent implements OnInit {
   loggedInUser;
 
   constructor(
-    private router: Router,
-    private activatedRoute: ActivatedRoute,
-    private usersService: UsersService
+    private usersService: UsersService,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit() {
-    this.sessionCheck();
+    //this.sessionCheck();
 
     this.usersService.count().subscribe((data) => {
       this.numUsers = data['totalUsers'];
@@ -46,7 +46,7 @@ export class MainNavComponent implements OnInit {
     });
 
     this.usersService.userLoggedInEvent.subscribe((data) => {
-      this.sessionCheck();
+      //this.sessionCheck();
     })
   }
 
@@ -66,16 +66,10 @@ export class MainNavComponent implements OnInit {
     }
   }
 
-  showAddUser() {
-    if (!eval(this.activatedRoute.snapshot.queryParamMap.get('add'))) {
-      if (this.router.url === '/') {
-        this.router.navigate(['/'], { queryParams: { 'add': 'true' } });
-      } else {
-        this.router.navigate([], { queryParams: { 'add': 'true' } });
-      }
-    } else {
-      this.router.navigate([]);
-    }
+  openAddUserDialog() {
+    let addUserDialog = this.dialog.open(AddUserDialogComponent, {
+      width: '600px'
+    });
   }
 
 }

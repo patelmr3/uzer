@@ -1,61 +1,64 @@
 <article class="add-skill-wrapper">
   
   <form 
-  *ngIf="!showSpinner"
-  [formGroup]="addSkillForm" 
-  id="add-skill-form" 
-  (submit)="addSkill(addSkillForm)" 
-  novalidate>
+    *ngIf="!showSpinner"
+    [formGroup]="addSkillForm" 
+    id="add-skill-form" 
+    (submit)="addSkill(addSkillForm)" 
+    novalidate>
 
-      <mat-form-field class="form-field" color="primary">
-        <input 
-        matInput
-        #skillName
-        (focus)="showSuggestedSkills = true"
-        id="skill-name" 
-        formControlName="skillName"
-        placeholder="Skill">
-      </mat-form-field>
+        <mat-form-field class="form-field" color="primary">
+          <input 
+            matInput
+            #skillName
+            (focus)="showSuggestedSkills = true"
+            id="skill-name" 
+            formControlName="skillName"
+            placeholder="Skill">
+        </mat-form-field>
 
-      <section 
-      [@scale]
-      class="suggested-skills" 
-      *ngIf="showSuggestedSkills">
-        <ul class="suggested-skill-list">
-          <li 
-          class="suggested-skill" 
-          (click)="selectSuggestion(skill); showSuggestedSkills = false"
-          *ngFor="let skill of suggestedSkills">
-            {{ skill }}
-          </li>
-        </ul>
-      </section>
+        <section 
+          [@scale]
+          class="suggested-skills" 
+          *ngIf="showSuggestedSkills">
+            <ul class="suggested-skill-list">
+              <li 
+                class="suggested-skill" 
+                (click)="selectSuggestion(skill); showSuggestedSkills = false"
+                *ngFor="let skill of suggestedSkills">
+                  {{ skill }}
+              </li>
+            </ul>
+        </section>
 
-   
+      <expertise-level 
+        [(currentExpertiseLevel)]="currentExpertiseLevel">
+      </expertise-level>
 
-    <expertise-level 
-    [(currentExpertiseLevel)]="currentExpertiseLevel">
-    </expertise-level>
-
-    <div class="action-btns">
-      <button 
-      mat-button
-      pushDownBtn
-      type="button"
-      (click)="closeAddSkill()">
-          Cancel
-      </button>
-      <button 
-      mat-button
-      color="primary"
-      pushDownBtn
-      type="submit"
-      [disabled]="!skillName.value.length">
-        Save
-      </button>
-    </div>
+      <div class="action-btns">
+        <button 
+          mat-button
+          pushDownBtn
+          type="button"
+          (click)="closeAddSkill()">
+            Cancel
+        </button>
+        <button 
+          mat-button
+          color="primary"
+          pushDownBtn
+          type="submit"
+          [disabled]="!skillName.value.length">
+            Save
+        </button>
+      </div>
   </form>
 
-  <spinner *ngIf="showSpinner" [inline]="false" size="lg" color="primary"></spinner>
+  <spinner 
+    *ngIf="showSpinner" 
+    [inline]="false" 
+    size="lg" 
+    color="primary">
+  </spinner>
 
 </article>

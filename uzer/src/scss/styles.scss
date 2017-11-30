@@ -19,6 +19,7 @@ $app-theme: mat-light-theme($palette-primary, $palette-accent); //material desig
 @include mat-input-theme($app-theme);
 @include mat-select-theme($app-theme);
 @include mat-snack-bar-theme($app-theme);
+@include mat-dialog-theme($app-theme);
 
 @import 'mixins';
 @import 'range_input';

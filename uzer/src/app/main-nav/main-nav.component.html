@@ -20,7 +20,7 @@
 
     <section class="nav-right">
 
-      <div 
+      <!-- <div 
         *ngIf="isUserLoggedIn" 
         class="user-dropdown" 
         [matMenuTriggerFor]="appMenu">
@@ -32,19 +32,19 @@
               </div>
               <i class="fa fa-caret-down"></i>
           </div>
-      </div>
+      </div> -->
 
-      <mat-menu #appMenu="matMenu">
+      <!-- <mat-menu #appMenu="matMenu">
         <button 
           mat-menu-item 
           [routerLink]="['/users', loggedInUser._id]"> 
             My profile 
         </button>
-      </mat-menu>
+      </mat-menu> -->
 
       <button 
         mat-raised-button 
-        (click)="showAddUser()" 
+        (click)="openAddUserDialog()"
         pushDownBtn 
         color="accent">
           Add user

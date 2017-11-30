@@ -8,6 +8,8 @@ import { SkillsService } from '../services/skills-service/skills.service';
 import { Subscription } from 'rxjs/Subscription';
 import { ActivatedRoute } from '@angular/router';
 import { scale } from '../animations';
+import { MatDialog } from '@angular/material';
+import { AddSkillDialogComponent } from '../add-skill-dialog/add-skill-dialog.component';
 
 @Component({
   selector: 'skills',
@@ -31,7 +33,8 @@ export class SkillsComponent implements OnInit, OnDestroy {
   
   constructor(
     private skillsService: SkillsService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -75,5 +78,12 @@ export class SkillsComponent implements OnInit, OnDestroy {
     this.skillUpdatedEventSubscription.unsubscribe();
     this.deleteSkillSubscription.unsubscribe();
     this.paramMapSubscription.unsubscribe();
+  }
+
+  openAddSkillDialog() {
+    let addSkillDialog = this.dialog.open(AddSkillDialogComponent, {
+      width: '500px',
+      data: {userId: this.activatedUserId}
+    });
   }
 }

@@ -17,9 +17,21 @@ import { trigger, state, style, transition, animate, group, animateChild } from 
   styleUrls: ['./page-title.component.scss'],
   animations: [
     trigger('pageTitleState', [
-      state('in', style({ marginTop: 0 })),
-      transition('void => *', group([
-        animate('.3s ease-in-out', style({ marginTop: 0 }))
+      state('void', style({ 
+        opacity: 0,
+        marginTop: 87
+      })),
+      state('*', style({ 
+        opacity: 1,
+        marginTop: 30 
+      })),
+      transition(':enter', group([
+        animate('.3s ease-out', style({
+          opacity: 1
+        })),
+        animate('.5s ease', style({
+          marginTop: 30
+        }))
       ]))
     ])
   ]

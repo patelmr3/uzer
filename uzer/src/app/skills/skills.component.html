@@ -60,14 +60,14 @@
 
   <section>
     <button 
-      mat-raised-button
-      color="accent"
-      (click)="addSkillModalVisible = !addSkillModalVisible">
+      mat-raised-button 
+      color="accent" 
+      (click)="openAddSkillDialog()">
         Add
     </button>
   </section>
 
-  <modal 
+  <!-- <modal 
     *ngIf="addSkillModalVisible" 
     [(modalVisible)]="addSkillModalVisible">
       <div modal-body>
@@ -75,7 +75,7 @@
           [(addSkillModalVisible)]="addSkillModalVisible">
         </add-skill>
       </div>
-  </modal>
+  </modal> -->
 
   <modal 
     *ngIf="updateSkillModalVisible" 

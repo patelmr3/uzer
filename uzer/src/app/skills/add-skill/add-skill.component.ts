@@ -19,7 +19,7 @@ import {
 
 import { SkillsService } from '../../services/skills-service/skills.service';
 import { Subscription } from 'rxjs/Subscription';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatDialog } from '@angular/material';
 
 @Component({
   selector: 'add-skill',
@@ -34,14 +34,11 @@ export class AddSkillComponent implements OnInit {
   addSkillFormzIndex: Number = 105;
   currentExpertiseLevel: any = {};
   showSpinner: Boolean;
-  activatedUserId: String;
+  @Input('userId') activatedUserId: String;
 
   addSkillSubscription = new Subscription();
   updateSkillSubscription = new Subscription();
   paramMapSubscription = new Subscription();
-
-  @Input() addSkillModalVisible;
-  @Output() addSkillModalVisibleChange = new EventEmitter();
 
   suggestedSkills = [
     'HTML', 
@@ -60,7 +57,8 @@ export class AddSkillComponent implements OnInit {
   constructor(
     private skillsService: SkillsService,
     private activatedRoute: ActivatedRoute,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -69,10 +67,15 @@ export class AddSkillComponent implements OnInit {
       'skillName': new FormControl('', [])
     });
 
-    this.paramMapSubscription = this.activatedRoute.paramMap.subscribe((paramMap) => {
-      this.activatedUserId = paramMap.get('userId');
-      console.log(this.activatedUserId);
-    });
+    if(this.activatedUserId === '') {
+      this.paramMapSubscription = this.activatedRoute.paramMap.subscribe((paramMap) => {
+        this.activatedUserId = paramMap.get('userId');
+        console.log('activated userId: ', this.activatedUserId);
+        console.log(this.activatedRoute.snapshot.params);
+      });
+    } else {
+      console.log('could not get valid userId');
+    }
   }
 
   selectSuggestion(skill) {
@@ -108,8 +111,7 @@ export class AddSkillComponent implements OnInit {
   closeAddSkill() {
     this.addSkillForm.reset(); //reset form
     this.showSuggestedSkills = false; //hide suggested skills
-    this.addSkillModalVisible = false; //hide modal
-    this.addSkillModalVisibleChange.emit(this.addSkillModalVisible); //ask modal to close
     this.addSkillSubscription.unsubscribe();
+    this.dialog.closeAll();
   }
 }
