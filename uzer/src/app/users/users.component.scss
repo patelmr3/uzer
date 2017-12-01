@@ -10,12 +10,27 @@
   }
 }
 
-.user-list {
-  margin: 30px auto; 
+.users-view-port{
+  display: flex;
 }
 
+.users-list{
+  overflow-y: auto;
+  width: 20%;
+  min-width: 250px;
+  height: 100%;
+  padding: 10px;
+}
+
+.users-map{
+  flex-grow: 1;
+}
+
+agm-map {
+  height: 100%;
+}
 
 .user-full-name {
-  font-size: 1.3em;
-  font-weight: 800;
+  font-size: 1.2em;
+  font-weight: 500;
 }

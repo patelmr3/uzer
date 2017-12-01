@@ -1,15 +1,17 @@
 <section class="users-wrapper">
 
   <page-title pageTitle="Users"></page-title>
-  
-  <section class="user-list container">
-    <div class="row">
 
+  <section users-view-port class="users-view-port">
+  
+    <section class="users-list">
       <article
         *ngFor="let user of users"
-        class="col user" [@slideIn]="slideInUserInitials">
+        class="user" [@slideIn]="slideInUserInitials">
           
-          <div class="card">
+          <div 
+          (click)="locateUser(user.address.location)"
+          class="card">
             <div 
               class="user-initials" 
               [@slideIn]="slideInUserInitials"
@@ -34,9 +36,19 @@
           </div>
 
       </article>
+      <article *ngIf="noUsers">No users found</article>
+    </section>
 
-    </div>
-    <article *ngIf="noUsers">No users found</article>
+    <section class="users-map">
+      <agm-map [latitude]="mapCenter.lat" [longitude]="mapCenter.lng" [zoom]="12">
+        <div *ngFor="let mapMarker of mapMarkers">
+          <agm-marker [latitude]="mapMarker.lat" [longitude]="mapMarker.lng">
+            <agm-info-window [latitude]="mapMarker.lat" [longitude]="mapMarker.lng">asds</agm-info-window>
+          </agm-marker>
+        </div>
+      </agm-map>
+    </section>
+
   </section>
 
   <spinner 
@@ -45,7 +57,5 @@
     size="lg" 
     color="primary">
   </spinner>
-
-  <router-outlet></router-outlet>
 
 </section>

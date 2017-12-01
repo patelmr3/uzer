@@ -29,18 +29,45 @@ export class UsersComponent implements OnInit, OnDestroy {
   slideInUserInitials: String;
   showSpinner: Boolean = false;
   selectUsersSubscription;
+  mapMarkers: any = [];
+  mapCenter: any = {
+    lat: 43.653360,
+    lng: -79.385829
+  };
 
-  constructor(private userDataService: UsersService) { }
+  constructor(
+    private userDataService: UsersService
+  ) { }
 
   ngOnInit() {
+    this.getUsers();
+  }
+
+  getUsers() {
     this.showSpinner = true;
+
     this.selectUsersSubscription = this.userDataService.select()
-      .subscribe((data) => {
-        this.users = data['results'];
-        this.showSpinner = false;
-        this.noUsers = (this.users.length) ? false : true;
-      });
+    .subscribe((data) => {
+      this.users = data['results'];
+      this.showSpinner = false;
+      this.noUsers = (this.users.length) ? false : true;
+      this.setMapMarkers(this.users);
+    });
+
     this.slideInUserInitials = 'in';
+  }
+
+  setMapMarkers(users) {
+    users.forEach(user => {
+      let lng = user.address.location.lng;
+      let lat = user.address.location.lat;
+      this.mapMarkers.push({lat: lat, lng: lng});
+    });
+    console.log(this.mapMarkers);
+  }
+
+  locateUser(location) {
+    this.mapCenter = location;
   }
 
   ngOnDestroy() {

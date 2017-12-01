@@ -4,6 +4,7 @@ import { NgModule, /*NO_ERRORS_SCHEMA*/ } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { AgmCoreModule } from '@agm/core';
 
 // material design modules
 import { 
@@ -41,6 +42,7 @@ import { ExpertiseLevelComponent } from './skills/expertise-level/expertise-leve
 import { HomeComponent } from './home/home.component';
 import { AddUserDialogComponent } from './add-user-dialog/add-user-dialog.component';
 import { AddSkillDialogComponent } from './add-skill-dialog/add-skill-dialog.component';
+import { UsersViewPortDirective } from './users/users-view-port.directive';
 
 const appRoutes: Routes = [
   {
@@ -82,6 +84,7 @@ const appRoutes: Routes = [
     HomeComponent,
     AddUserDialogComponent,
     AddSkillDialogComponent,
+    UsersViewPortDirective,
   ],
   entryComponents: [
     AddUserDialogComponent,
@@ -93,6 +96,10 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBmsIJIwmsvegI10xR7sWpNuOOvOCrbQTA',
+      libraries: ['places']
+    }),
     MatMenuModule,
     MatButtonModule,
     MatGridListModule,

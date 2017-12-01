@@ -1,7 +1,6 @@
 <section>
   <form 
-    [formGroup]="registrationForm" 
-    (submit)="registerUser(registrationForm)">
+    [formGroup]="registrationForm">
       
       <mat-form-field>      
         <input 
@@ -79,7 +78,20 @@
             <mat-option value="UI developer">UI developer</mat-option>
             <mat-option value="Web designer">Web designer</mat-option>
             <mat-option value="UX designer">UX designer</mat-option>
-          </mat-select>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>    
+        <input 
+          #address
+          matInput
+          type="text"
+          formControlName="address"
+          placeholder="Address"
+          required>
+          <mat-error *ngIf="address.errors?.required">
+            Address is required  
+          </mat-error>
       </mat-form-field>
 
       <mat-error
@@ -92,6 +104,8 @@
         mat-raised-button
         color="primary"
         pushDownBtn
+        type="button"
+        (click)="registerUser(registrationForm)"
         [disabled]="!registrationForm.valid">
           Add 
           <spinner 
