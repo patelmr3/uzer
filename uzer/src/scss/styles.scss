@@ -20,6 +20,7 @@ $app-theme: mat-light-theme($palette-primary, $palette-accent); //material desig
 @include mat-select-theme($app-theme);
 @include mat-snack-bar-theme($app-theme);
 @include mat-dialog-theme($app-theme);
+@include mat-autocomplete-theme($app-theme);
 
 @import 'mixins';
 @import 'range_input';
@@ -60,7 +61,7 @@ body {
 }
 
 .mat-raised-button {
-  box-shadow: none !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12156862745098039) !important;
   border-radius: 3px !important;
 
   &.mat-primary {

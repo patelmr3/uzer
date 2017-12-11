@@ -2,6 +2,57 @@
 
   <page-title pageTitle="Users"></page-title>
 
+  <section class="user-filters-wrapper">
+    
+    <article class="user-filter">
+      <button 
+        mat-raised-button 
+        [matMenuTriggerFor]="cityFilter" 
+        (click)="getCities()">
+          Select city
+      </button>
+      <mat-menu #cityFilter="matMenu">
+        <button 
+          mat-menu-item
+          *ngFor="let city of cityFilterList" 
+          (click)="applyFilter({name: 'address.city', value: city})">
+            {{ city }}
+        </button>
+      </mat-menu>
+    </article>
+
+    <article class="user-filter">
+      <button 
+        mat-raised-button 
+        [matMenuTriggerFor]="positionFilter">
+          Select position
+      </button>
+      <mat-menu #positionFilter="matMenu">
+        <button 
+          mat-menu-item
+          (click)="applyFilter({name: 'jobPosition', value: 'UI designer'})">
+            UI Designer
+        </button>
+        <button 
+          mat-menu-item
+          (click)="applyFilter({name: 'jobPosition', value: 'Front-end developer'})">
+            Front-end Developer
+        </button>
+        <button 
+          mat-menu-item
+          (click)="applyFilter({name: 'jobPosition', value: 'Back-end developer'})">
+            Back-end Developer
+        </button>
+        <button 
+          mat-menu-item
+          (click)="applyFilter({name: 'jobPosition', value: 'UI developer'})">
+            UI Developer
+        </button>
+      </mat-menu>
+    </article>
+
+  </section>
+
   <section users-view-port class="users-view-port">
   
     <section class="users-list">
@@ -23,12 +74,11 @@
               [@slideIn]="slideInUserInitials">
                 {{ user.firstName + ' ' + user.lastName }}
             </div>
-            <div class="user-job-position">
+            <div class="user-job-position" *ngIf="user.jobPosition">
               {{ user.jobPosition }}
             </div>
             <button 
-              mat-button 
-              color="accent"
+              mat-raised-button 
               class="btn"
               [routerLink]="['/users', user._id]">
                 View profile
@@ -40,12 +90,38 @@
     </section>
 
     <section class="users-map">
-      <agm-map [latitude]="mapCenter.lat" [longitude]="mapCenter.lng" [zoom]="12">
-        <div *ngFor="let mapMarker of mapMarkers">
-          <agm-marker [latitude]="mapMarker.lat" [longitude]="mapMarker.lng">
-            <agm-info-window [latitude]="mapMarker.lat" [longitude]="mapMarker.lng">asds</agm-info-window>
-          </agm-marker>
-        </div>
+      <agm-map 
+        [latitude]="mapCenter.lat" 
+        [longitude]="mapCenter.lng" 
+        [zoom]="12">
+          <div *ngFor="let user of users">
+            <agm-marker 
+              [latitude]="user.address.location.lat" 
+              [longitude]="user.address.location.lng">
+                <agm-info-window 
+                  [latitude]="user.address.location.lat" 
+                  [longitude]="user.address.location.lng">
+                    <div class="user">
+                      <div 
+                        class="user-full-name" 
+                        [@slideIn]="slideInUserInitials">
+                          {{ user.firstName + ' ' + user.lastName }}
+                      </div>
+                      <div class="">
+                        {{ user.jobPosition }}
+                      </div>
+                      <br/>
+                      <button 
+                        mat-raised-button 
+                        color="accent"
+                        class="btn"
+                        [routerLink]="['/users', user._id]">
+                          View profile
+                      </button>
+                    </div>
+                </agm-info-window>
+            </agm-marker>
+          </div>
       </agm-map>
     </section>
 

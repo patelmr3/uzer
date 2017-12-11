@@ -16,7 +16,8 @@ import {
   MatInputModule,
   MatSnackBarModule,
   MatSelectModule,
-  MatDialogModule
+  MatDialogModule,
+  MatAutocompleteModule
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -98,7 +99,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBmsIJIwmsvegI10xR7sWpNuOOvOCrbQTA',
-      libraries: ['places']
+      libraries: ['places', 'geometry']
     }),
     MatMenuModule,
     MatButtonModule,
@@ -108,7 +109,8 @@ const appRoutes: Routes = [
     MatInputModule,
     MatSnackBarModule,
     MatSelectModule,
-    MatDialogModule
+    MatDialogModule,
+    MatAutocompleteModule
   ],
   providers: [UsersService, SkillsService],
   bootstrap: [AppComponent],

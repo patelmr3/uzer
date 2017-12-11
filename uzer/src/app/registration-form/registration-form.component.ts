@@ -57,12 +57,11 @@ export class RegistrationFormComponent implements OnInit, OnDestroy {
     });
     
     //google places autocomplete
-    this.mapsAPILoader.load().then(() => {
-      let addressAutoComplete = new google.maps.places.Autocomplete(this.addressInputElement.nativeElement, {
-        types: ["address"]
-      });
-      this.addressAutoComplete = addressAutoComplete;
+    let addressAutoComplete = new google.maps.places.Autocomplete(this.addressInputElement.nativeElement, {
+      types: ["address"]
     });
+    
+    this.addressAutoComplete = addressAutoComplete;
   }
 
   registerUser(form) {
@@ -77,6 +76,7 @@ export class RegistrationFormComponent implements OnInit, OnDestroy {
       phone: fc.phone.value,
       jobPosition: fc.jobPosition.value,
       address: {
+        city: place.vicinity,
         full: place.formatted_address,
         location: place.geometry.location
       }

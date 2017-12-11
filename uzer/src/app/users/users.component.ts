@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { UsersService } from './users.service';
 import { trigger, state, style, animate, group, transition } from '@angular/animations';
+import { FormControl } from '@angular/forms/';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-users',
@@ -25,53 +27,61 @@ import { trigger, state, style, animate, group, transition } from '@angular/anim
 })
 export class UsersComponent implements OnInit, OnDestroy {
   users;
+  unfilteredUsers; //original copy of users which will not get touched by filters
   noUsers: Boolean = false;
   slideInUserInitials: String;
   showSpinner: Boolean = false;
-  selectUsersSubscription;
   mapMarkers: any = [];
   mapCenter: any = {
     lat: 43.653360,
     lng: -79.385829
   };
+  cityFilterList: any;
+  filters: any = {};
 
   constructor(
-    private userDataService: UsersService
+    private userDataService: UsersService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    this.getUsers();
+    this.getUsers({});
+    this.activatedRoute.paramMap.subscribe((paramMap) => {
+      let city = paramMap.get('city');
+      console.log((paramMap.get('filters')));
+      this.getUsers({city: city});
+    });
   }
 
-  getUsers() {
+  getUsers(filters) {
     this.showSpinner = true;
 
-    this.selectUsersSubscription = this.userDataService.select()
-    .subscribe((data) => {
-      this.users = data['results'];
+    this.userDataService.getUsers(this.filters, data => {
+      this.unfilteredUsers = this.users = data['results'];
       this.showSpinner = false;
       this.noUsers = (this.users.length) ? false : true;
-      this.setMapMarkers(this.users);
     });
 
     this.slideInUserInitials = 'in';
   }
 
-  setMapMarkers(users) {
-    users.forEach(user => {
-      let lng = user.address.location.lng;
-      let lat = user.address.location.lat;
-      this.mapMarkers.push({lat: lat, lng: lng});
+  getCities() {
+    this.userDataService.getCities((cities) => {
+      this.cityFilterList = cities; 
     });
-    console.log(this.mapMarkers);
   }
 
   locateUser(location) {
     this.mapCenter = location;
   }
 
+  applyFilter(filter) {
+    this.filters[filter.name] = filter.value ;
+    this.router.navigate(['/users', {filters: JSON.stringify(this.filters)}]);
+  }
+
   ngOnDestroy() {
-    this.selectUsersSubscription.unsubscribe();
   }
 
 }

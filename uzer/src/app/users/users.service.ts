@@ -19,14 +19,25 @@ export class UsersService {
   insert(userData) {
     return this.http.post(`${this.API}/users/`, userData);
   }
-  //select all users
-  select() {
-    return this.http.get(`${this.API}/users/`);
+
+  //get all users
+  getUsers(filters, callback) {
+    this.http.get(`${this.API}/users?filters=${JSON.stringify(filters)}`).subscribe(users => {
+      callback(users);
+    });
   }
+
   //select one user
   selectOne(userId) {
     return this.http.get(`${this.API}/users/${userId}`);
   }
+
+  getCities(callback) {
+    this.http.get(`${this.API}/cities`).subscribe((cities) => {
+      callback(cities);
+    });
+  }
+
   //count users
   count() {
     return this.http.get(`${this.API}`);
@@ -36,6 +47,7 @@ export class UsersService {
   emitUserCreated() {
     this.userCreatedEvent.emit();
   }
+
   //emit event when new user is logedIn
   emitUserLoggedIn(data) {
     this.userLoggedInEvent.emit(data);
